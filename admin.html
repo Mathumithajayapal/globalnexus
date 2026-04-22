@@ -655,6 +655,9 @@
     color: white;
     box-shadow: 0 8px 16px rgba(124,58,237,0.25);
 }
+#sidebarLogoutBtn {
+    text-decoration: none;
+}
     </style>
 </head>
 <body>
@@ -685,9 +688,14 @@
         </div>
         
         <div class="sidebar-footer">
-            <div class="weather-info"><i class="fas fa-sun"></i><span>28°C Sunny</span></div>
-            <div class="logout-btn-sidebar" id="sidebarLogoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</div>
-        </div>
+    <div class="weather-info">
+        <i class="fas fa-sun"></i><span>28°C Sunny</span>
+    </div>
+    
+    <a href="login.html" class="logout-btn-sidebar" id="sidebarLogoutBtn">
+        <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
+</div>
     </aside>
 
     <main class="main-content">
