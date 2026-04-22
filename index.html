@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>GlobalNexus | Corporate Language & Cross-Cultural Training</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .floating-icon {
+            animation: floatIcon 6s ease-in-out infinite;
+        }
+
+        @keyframes floatIcon {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-8px) rotate(4deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 85%;
+            max-width: 380px;
+            height: 100vh;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            overflow-y: auto;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-drawer.open {
+            transform: translateX(0);
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+
+        .drawer-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        body.drawer-open {
+            overflow: hidden;
+        }
+
+        html[dir="rtl"] .navbar-flex {
+            flex-direction: row-reverse !important;
+        }
+
+        html[dir="rtl"] .nav-links {
+            order: 2;
+        }
+
+        html[dir="rtl"] .logo-area {
+            order: 3;
+        }
+
+        html[dir="rtl"] .controls-area {
+            order: 1;
+        }
+
+        html[dir="rtl"] .home-dropdown,
+        html[dir="rtl"] .contact-dropdown {
+            left: auto !important;
+            right: 0 !important;
+        }
+
+        html[dir="rtl"] .fa-arrow-right {
+            transform: scaleX(-1);
+        }
+
+        html[dir="rtl"] .rtl-flip {
+            transform: scaleX(-1);
+        }
+
+        html[dir="rtl"] .mobile-drawer {
+            right: auto;
+            left: 0;
+            transform: translateX(-100%);
+        }
+
+        html[dir="rtl"] .mobile-drawer.open {
+            transform: translateX(0);
+        }
+
+        body {
+            background-color: #ffffff !important;
+        }
+
+        html.dark body {
+            background-color: #000000 !important;
+        }
+
+        html.dark .nav-bar {
+            background-color: #000000 !important;
+            border-bottom-color: #1f2937 !important;
+        }
+
+        html.dark .nav-bar .nav-text,
+        html.dark .nav-bar .logo-subtext,
+        html.dark .nav-bar .fa-bars,
+        html.dark .nav-bar .text-gray-700,
+        html.dark .nav-bar .text-gray-900,
+        html.dark .nav-bar .fa-globe {
+            color: #ffffff !important;
+        }
+
+        html.dark .nav-bar .btn-primary-dark {
+            background-color: #7C3AED !important;
+            color: #ffffff !important;
+        }
+
+        html.dark .nav-bar .btn-primary-dark:hover {
+            background-color: #6d28d9 !important;
+        }
+
+        html.dark .dropdown-bg {
+            background-color: #000000 !important;
+            border-color: #1f2937 !important;
+        }
+
+        html.dark .dropdown-item {
+            color: #ffffff !important;
+        }
+
+        html.dark .dropdown-item:hover {
+            background-color: #1a1a1a !important;
+            color: #7C3AED !important;
+        }
+
+        html.dark .footer-dark {
+            background-color: #0a0a0a !important;
+            border-top-color: #1f2937 !important;
+        }
+
+        html.dark .footer-heading,
+        html.dark .footer-link,
+        html.dark .footer-dark p,
+        html.dark .footer-dark .text-gray-600,
+        html.dark .footer-dark .text-gray-500 {
+            color: #d1d5db !important;
+        }
+
+        html.dark .footer-heading {
+            color: #ffffff !important;
+        }
+
+        html.dark .social-icon {
+            color: #9ca3af !important;
+        }
+
+        html.dark .social-icon:hover {
+            color: #7C3AED !important;
+        }
+
+        html.dark .newsletter-input {
+            background-color: #1a1a1a !important;
+            border-color: #333333 !important;
+            color: #ffffff !important;
+        }
+
+        html.dark .newsletter-input::placeholder {
+            color: #6b7280 !important;
+        }
+
+        html.dark .mobile-menu-dark {
+            background-color: #000000 !important;
+            border-left-color: #1f2937 !important;
+        }
+
+        html.dark .mobile-menu-item {
+            border-bottom-color: #1f2937 !important;
+            color: #ffffff !important;
+        }
+
+        html.dark .mobile-menu-item span {
+            color: #ffffff !important;
+        }
+
+        html.dark .mobile-toggle-btn {
+            background-color: #1f1f1f !important;
+            color: #ffffff !important;
+        }
+
+        html.dark .border-purple-100 {
+            border-color: #1f2937 !important;
+        }
+
+        html.dark .bg-white\/70 {
+            background-color: rgba(26, 26, 26, 0.85) !important;
+        }
+
+        html.dark .drawer-overlay {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .text-accent {
+            color: #7C3AED;
+        }
+
+        .bg-accent {
+            background-color: #7C3AED;
+        }
+
+        /* ===== PAGE STYLES ===== */
+
+        /* Dark mode content overrides */
+        html.dark .section-white {
+            background-color: #0a0a0a !important;
+        }
+
+        html.dark .section-cream {
+            background-color: #050505 !important;
+        }
+
+        html.dark .card-bg {
+            background-color: #111111 !important;
+            border-color: #1f2937 !important;
+        }
+
+        html.dark .text-h {
+            color: #ffffff !important;
+        }
+
+        html.dark .text-b {
+            color: #d1d5db !important;
+        }
+
+        html.dark .text-m {
+            color: #9ca3af !important;
+        }
+
+        html.dark .badge-bg {
+            background-color: #1a0a2e !important;
+            color: #c084fc !important;
+        }
+
+        html.dark .badge-orange {
+            background-color: #1a0f00 !important;
+            color: #fb923c !important;
+        }
+
+        html.dark .divider-dm {
+            border-color: #1f2937 !important;
+        }
+
+        html.dark .img-overlay {
+            background-color: rgba(0, 0, 0, 0.6) !important;
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hover cards */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.13);
+            border-color: #7C3AED !important;
+        }
+
+        /* Section title underline */
+        .s-title::after {
+            content: '';
+            display: block;
+            width: 52px;
+            height: 4px;
+            background: linear-gradient(90deg, #7C3AED, #a855f7);
+            border-radius: 2px;
+            margin: 12px auto 0;
+        }
+
+        .s-title.left::after {
+            margin: 12px 0 0;
+        }
+
+        /* CTA gradient */
+        .cta-bg {
+            background: linear-gradient(135deg, #7C3AED 0%, #5b21b6 55%, #4c1d95 100%);
+        }
+
+        /* Hero overlay - NEW: Clean background with dark semi-transparent for readability (no left-side white) */
+        .hero-overlay {
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.55) 50%, rgba(0, 0, 0, 0.4) 100%);
+        }
+        html.dark .hero-overlay {
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%) !important;
+        }
+
+        /* Hero text centering */
+        .hero-content {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-content .stats-row {
+            justify-content: center;
+        }
+        .hero-content .s-title::after {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Image aspect ratio helpers */
+        .img-cover {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Progress bars */
+        .pbar {
+            transition: width 1.4s ease;
+        }
+
+        /* Stat number */
+        .stat-num {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Tab buttons */
+        .tab-btn {
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .tab-btn.active {
+            background-color: #7C3AED !important;
+            color: #ffffff !important;
+            border-color: #7C3AED !important;
+        }
+
+        /* Testimonial quote */
+        .quote-mark {
+            font-size: 5rem;
+            line-height: 1;
+            color: #e9d5ff;
+            font-family: Georgia, serif;
+            position: absolute;
+            top: -8px;
+            left: 20px;
+        }
+
+        html.dark .quote-mark {
+            color: #2d1a4a;
+        }
+
+        .active-link {
+            color: #7C3AED !important;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .active-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 100%;
+            height: 2px;
+            background: #7C3AED;
+            border-radius: 2px;
+        }
+
+        /* Mobile active */
+        .active-mobile {
+            background-color: rgba(124, 58, 237, 0.1);
+            color: #7C3AED !important;
+            border-radius: 8px;
+            padding-left: 10px;
+        }
+        /* Default (mobile) → 1 column */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        /* Tablet (768px – 1024px) → 2x2 grid */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .testimonial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Desktop (>1024px) → 3 columns */
+        @media (min-width: 1025px) {
+            .testimonial-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Hero text white for better contrast */
+        .hero-white-text h1, .hero-white-text p, .hero-white-text .stat-num, .hero-white-text .text-m {
+            color: #ffffff !important;
+        }
+        .hero-white-text .text-m {
+            color: #f0f0f0 !important;
+        }
+        .hero-white-text .border-gray-200 {
+            border-color: rgba(255,255,255,0.3) !important;
+        }
+        .hero-white-text .badge-bg {
+            background-color: rgba(124, 58, 237, 0.9);
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="bg-white font-sans antialiased">
+
+    <!-- ============================== NAVBAR ============================== -->
+    <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50 w-full border-b border-gray-100 nav-bar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="navbar-flex flex justify-between items-center h-16 md:h-20">
+                <a href="index.html" class="logo-area flex-shrink-0 flex items-center gap-2 group">
+                    <img src="https://placehold.co/400x400/7C3AED/white?text=GN"
+                        class="w-8 h-8 md:w-10 md:h-10 rounded-lg transition-transform group-hover:rotate-6"
+                        alt="GlobalNexus Logo">
+                    <div class="flex flex-col leading-tight">
+                        <span
+                            class="text-gray-900 text-xl md:text-2xl font-bold tracking-tight nav-text">GlobalNexus</span>
+                        <span
+                            class="text-gray-500 text-[0.65rem] font-semibold uppercase tracking-wider -mt-0.5 logo-subtext">connect
+                            · innovate · grow</span>
+                    </div>
+                </a>
+                <div class="nav-links hidden xl:flex items-center space-x-6 xl:space-x-8">
+                    <div class="relative group">
+                        <a href="#"
+                            class="text-gray-700 font-medium text-sm lg:text-base hover:text-[#7C3AED] transition flex items-center gap-1 nav-text active-link">
+                            Home <i
+                                class="fas fa-chevron-down text-[10px] transition-transform group-hover:rotate-180"></i>
+                        </a>
+                        <div
+                            class="home-dropdown absolute left-0 mt-2 w-44 bg-white rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-purple-100 overflow-hidden dropdown-bg">
+                            <a href="index.html"
+                                class="block px-4 py-2.5 text-sm hover:bg-purple-50 transition flex items-center gap-2 dropdown-item"><i
+                                    class="fas fa-home text-[#7C3AED] text-xs"></i> Home 1</a>
+                            <a href="home2.html"
+                                class="block px-4 py-2.5 text-sm hover:bg-purple-50 transition flex items-center gap-2 border-t border-purple-50 dropdown-item"><i
+                                    class="fas fa-chart-line text-[#7C3AED] text-xs"></i> Home 2</a>
+                        </div>
+                    </div>
+                    <a href="about.html"
+                        class="text-gray-700 font-medium text-sm lg:text-base hover:text-[#7C3AED] transition nav-text">About</a>
+                    <a href="Service.html"
+                        class="text-gray-700 font-medium text-sm lg:text-base hover:text-[#7C3AED] transition nav-text">Service</a>
+                    <a href="Blog.html"
+                        class="text-gray-700 font-medium text-sm lg:text-base hover:text-[#7C3AED] transition nav-text">Blog</a>
+                    <a href="coursecatalog.html"
+                        class="text-gray-700 font-medium text-sm lg:text-base hover:text-[#7C3AED] transition nav-text">Coursecatalog</a>
+                    <a href="faq.html"
+                        class="text-gray-700 font-medium text-sm lg:text-base hover:text-[#7C3AED] transition nav-text">Faq</a>
+                    <a href="contact.html"
+                        class="text-gray-700 font-medium text-sm lg:text-base hover:text-[#7C3AED] transition nav-text">Contact</a>
+                    <div class="relative group">
+                        <a href="#"
+                            class="text-gray-700 font-medium text-sm lg:text-base hover:text-[#7C3AED] transition flex items-center gap-1 nav-text">
+                            Dashboard <i
+                                class="fas fa-chevron-down text-[10px] transition-transform group-hover:rotate-180"></i>
+                        </a>
+                        <div
+                            class="contact-dropdown absolute left-0 mt-2 w-48 bg-white rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-purple-100 overflow-hidden dropdown-bg">
+                            <a href="admin.html"
+                                class="block px-4 py-2.5 text-sm hover:bg-purple-50 transition flex items-center gap-2 dropdown-item">Admin</a>
+                            <a href="user.html"
+                                class="block px-4 py-2.5 text-sm hover:bg-purple-50 transition flex items-center gap-2 border-t border-purple-50 dropdown-item">user</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="controls-area hidden xl:flex items-center gap-3 xl:gap-4">
+                    <a href="login.html"
+                        class="flex items-center gap-2 bg-[#7C3AED] text-white px-4 py-2 rounded-full text-sm font-medium shadow-md hover:bg-[#6d28d9] transition btn-primary-dark"><span>Login</span></a>
+                    <div class="h-5 w-px bg-gray-300 divider-color"></div>
+                    <button id="darkModeToggle"
+                        class="flex items-center gap-1.5 text-gray-700 font-medium text-sm hover:text-[#7C3AED] transition nav-text"><i
+                            id="darkIcon" class="fas fa-moon text-sm"></i> <span id="darkLabel">Dark</span></button>
+                    <div class="h-5 w-px bg-gray-300 divider-color"></div>
+                    <button id="rtlToggle"
+                        class="flex items-center gap-1.5 text-gray-700 font-medium text-sm hover:text-[#7C3AED] transition nav-text"><i
+                            id="rtlIcon" class="fas fa-globe text-sm"></i> <span id="rtlLabel">LTR</span></button>
+                </div>
+                <div class="flex items-center gap-3 xl:hidden">
+                    <button id="mobileMenuBtn"
+                        class="nav-text focus:outline-none p-2 rounded-full hover:bg-gray-100 transition">
+                        <i class="fas fa-bars text-2xl text-gray-700"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div id="drawerOverlay" class="drawer-overlay"></div>
+    <div id="mobileDrawer" class="mobile-drawer bg-white border-l border-purple-100 shadow-xl mobile-menu-dark">
+        <div class="flex flex-col h-full">
+            <div class="flex justify-between items-center p-5 border-b border-purple-100">
+                <div class="flex items-center gap-2"><img src="https://placehold.co/400x400/7C3AED/white?text=GN"
+                        class="w-7 h-7 rounded" alt="logo"><span
+                        class="font-bold text-gray-900 text-lg nav-text">GlobalNexus</span></div>
+                <button id="closeDrawerBtn" class="text-gray-600 hover:text-[#7C3AED] transition text-2xl"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <div class="flex-1 py-6 px-5 space-y-4 overflow-y-auto">
+                <div>
+                    <div
+                        class="flex justify-between items-center py-2 text-gray-800 font-medium border-b border-purple-100 nav-text mobile-menu-item active-mobile">
+                        <span>Home</span><button id="drawerHomeBtn"><i id="drawerChevron"
+                                class="fas fa-chevron-down text-xs transition-transform"></i></button>
+                    </div>
+                    <div id="drawerSubmenu" class="hidden pl-4 mt-2 space-y-2">
+                        <a href="index.html"
+                            class="block py-1.5 text-sm hover:text-[#7C3AED] transition flex items-center gap-2 nav-text"><i
+                                class="fas fa-home text-[#7C3AED] text-xs"></i> Home 1</a>
+                        <a href="home2.html"
+                            class="block py-1.5 text-sm hover:text-[#7C3AED] transition flex items-center gap-2 nav-text"><i
+                                class="fas fa-chart-line text-[#7C3AED] text-xs"></i> Home 2</a>
+                    </div>
+                </div>
+                <a href="about.html" class="block py-2 border-b border-purple-100 nav-text mobile-menu-item">About</a>
+                <a href="Service.html"
+                    class="block py-2 border-b border-purple-100 nav-text mobile-menu-item">Service</a>
+                <a href="coursecatalog.html"
+                    class="block py-2 border-b border-purple-100 nav-text mobile-menu-item">Coursecatalog</a>
+                <a href="Blog.html" class="block py-2 border-b border-purple-100 nav-text mobile-menu-item">Blog</a>
+                <a href="faq.html" class="block py-2 border-b border-purple-100 nav-text mobile-menu-item">Faq</a>
+                <a href="contact.html"
+                    class="block py-2 border-b border-purple-100 nav-text mobile-menu-item">contact</a>
+                <div>
+                    <div
+                        class="flex justify-between items-center py-2 text-gray-800 font-medium border-b border-purple-100 nav-text mobile-menu-item">
+                        <span>Dashboard</span><button id="drawerContactBtn"><i id="drawerContactChevron"
+                                class="fas fa-chevron-down text-xs transition-transform"></i></button>
+                    </div>
+                    <div id="drawerContactSubmenu" class="hidden pl-4 mt-2 space-y-2">
+                        <a href="admin.html"
+                            class="block py-1.5 text-sm hover:text-[#7C3AED] transition flex items-center gap-2 nav-text"><i
+                                class="fas fa-envelope text-[#7C3AED] text-xs"></i> Admin</a>
+                        <a href="user.html"
+                            class="block py-1.5 text-sm hover:text-[#7C3AED] transition flex items-center gap-2 nav-text"><i
+                                class="fas fa-headset text-[#7C3AED] text-xs"></i> user</a>
+                    </div>
+                </div>
+                <div class="pt-4 space-y-4">
+                    <a href="login.html" class="flex items-center gap-2 nav-text text-gray-700"><i
+                            class="far fa-user-circle text-[#7C3AED]"></i> Login</a>
+                    <div class="flex gap-2 pt-2">
+                        <button id="drawerDarkToggle"
+                            class="flex-1 flex items-center justify-center gap-2 bg-gray-100 px-3 py-2 rounded-full text-sm font-medium transition mobile-toggle-btn"><i
+                                id="drawerDarkIcon" class="fas fa-moon text-xs"></i> <span
+                                id="drawerDarkLabel">Dark</span></button>
+                        <button id="drawerRtlToggle"
+                            class="flex-1 flex items-center justify-center gap-2 bg-gray-100 px-3 py-2 rounded-full text-sm font-medium transition mobile-toggle-btn"><i
+                                class="fas fa-globe text-xs"></i> <span id="drawerRtlLabel">LTR</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================== MAIN CONTENT ============================== -->
+    <main>
+
+        <!-- ===== HERO - CENTERED, NO LEFT WHITE OVERLAY ===== -->
+        <section class="relative overflow-hidden min-h-[92vh] flex items-center section-white">
+            <!-- Background image with proper coverage -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1600&q=80&auto=format&fit=crop"
+                    alt="Diverse team in a business meeting" class="img-cover">
+            </div>
+            <!-- Clean dark gradient overlay (no white side) for text readability -->
+            <div class="hero-overlay absolute inset-0 z-10"></div>
+
+            <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 hero-white-text">
+                <div class="hero-content max-w-3xl mx-auto">
+                    <span
+                        class="inline-block bg-purple-700/90 text-white text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6 badge-bg shadow-md">
+                        Trusted by 500+ Global Companies
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] mb-6 text-h">
+                        Break Barriers.<br>
+                        <span class="text-[#c084fc]">Bridge Cultures.</span><br>
+                        Build Business.
+                    </h1>
+                    <p class="text-white/90 text-lg leading-relaxed mb-10 max-w-xl mx-auto text-b">
+                        Expert-led corporate language training and cross-cultural coaching to help your teams
+                        communicate confidently across borders — in every meeting, negotiation, and relationship that
+                        matters.
+                    </p>
+                    <div class="flex gap-4 flex-wrap justify-center items-center">
+                        <a href="#"
+                            class="inline-flex items-center justify-center gap-2 bg-[#7C3AED] text-white px-8 py-4 rounded-full font-bold text-sm shadow-xl hover:bg-[#6d28d9] transition hover:-translate-y-0.5">
+                            Start Your Journey
+                        </a>
+                        <a href="#"
+                            class="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/30 text-white px-8 py-4 rounded-full font-bold text-sm hover:bg-white/20 transition card-bg">
+                            View All Courses
+                        </a>
+                    </div>
+
+                    <!-- Mini stats - centered row -->
+                    <div class="flex flex-wrap justify-center gap-8 mt-12 pt-10 border-t border-white/20 stats-row">
+                        <div>
+                            <div class="text-3xl font-black text-[#c084fc] stat-num">40+</div>
+                            <div class="text-xs font-semibold text-white/80 mt-1 uppercase tracking-wide text-m">
+                                Languages</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-[#c084fc] stat-num">15K+</div>
+                            <div class="text-xs font-semibold text-white/80 mt-1 uppercase tracking-wide text-m">
+                                Professionals Trained</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-[#c084fc] stat-num">98%</div>
+                            <div class="text-xs font-semibold text-white/80 mt-1 uppercase tracking-wide text-m">
+                                Satisfaction Rate</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-[#c084fc] stat-num">500+</div>
+                            <div class="text-xs font-semibold text-white/80 mt-1 uppercase tracking-wide text-m">
+                                Corporate Clients</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== WHAT WE OFFER ===== (rest of sections unchanged, preserve full content) -->
+        <section class="py-20 md:py-28 section-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-14 reveal">
+                    <span class="text-xs font-bold uppercase tracking-widest text-[#7C3AED] mb-3 block">What We
+                        Offer</span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 s-title text-h">Training Programs for
+                        Every Need</h2>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                    <!-- Card 1 -->
+                    <div class="hover-lift border border-gray-100 rounded-3xl overflow-hidden bg-white card-bg reveal">
+                        <div class="h-52 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1560472355-109703aa3edc?w=700&q=80&auto=format&fit=crop"
+                                alt="Business Language Training"
+                                class="img-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-7">
+                            <span class="text-xs font-bold uppercase tracking-widest text-[#7C3AED] mb-3 block">Language
+                                Training</span>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3 text-h">Business Language Training</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-5 text-b">Role-specific language courses
+                                for executives, sales teams, and client-facing professionals. Real workplace scenarios
+                                and live tutors.</p>
+                            <a href="#"
+                                class="text-[#7C3AED] font-semibold text-sm border-b border-[#7C3AED] pb-0.5 hover:border-purple-300 transition">Learn
+                                more</a>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="hover-lift border border-gray-100 rounded-3xl overflow-hidden bg-white card-bg reveal"
+                        style="transition-delay:0.1s">
+                        <div class="h-52 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=700&q=80&auto=format&fit=crop"
+                                alt="Cross-Cultural Coaching"
+                                class="img-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-7">
+                            <span class="text-xs font-bold uppercase tracking-widest text-[#7C3AED] mb-3 block">Cultural
+                                Intelligence</span>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3 text-h">Cross-Cultural Coaching</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-5 text-b">Understand cultural values,
+                                communication styles, and business etiquette from Japan to Brazil. Avoid costly
+                                misunderstandings.</p>
+                            <a href="#"
+                                class="text-[#7C3AED] font-semibold text-sm border-b border-[#7C3AED] pb-0.5 hover:border-purple-300 transition">Learn
+                                more</a>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="hover-lift border border-gray-100 rounded-3xl overflow-hidden bg-white card-bg reveal"
+                        style="transition-delay:0.2s">
+                        <div class="h-52 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=700&q=80&auto=format&fit=crop"
+                                alt="Team Immersion Workshops"
+                                class="img-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-7">
+                            <span class="text-xs font-bold uppercase tracking-widest text-[#7C3AED] mb-3 block">Group
+                                Workshops</span>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3 text-h">Team Immersion Workshops</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-5 text-b">Intensive half-day and full-day
+                                workshops for multinational teams. Cultural simulations and collaborative debrief
+                                sessions.</p>
+                            <a href="#"
+                                class="text-[#7C3AED] font-semibold text-sm border-b border-[#7C3AED] pb-0.5 hover:border-purple-300 transition">Learn
+                                more</a>
+                        </div>
+                    </div>
+                    <!-- Card 4-6 remain same for brevity, but preserving full content block -->
+                    <div class="hover-lift border border-gray-100 rounded-3xl overflow-hidden bg-white card-bg reveal"
+                        style="transition-delay:0.1s">
+                        <div class="h-52 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&q=80&auto=format&fit=crop"
+                                alt="Executive Coaching"
+                                class="img-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-7">
+                            <span
+                                class="text-xs font-bold uppercase tracking-widest text-[#7C3AED] mb-3 block">Executive
+                                Programs</span>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3 text-h">1-on-1 Executive Coaching</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-5 text-b">Personalized coaching for
+                                C-suite and senior managers preparing for international assignments or high-stakes
+                                negotiations.</p>
+                            <a href="#"
+                                class="text-[#7C3AED] font-semibold text-sm border-b border-[#7C3AED] pb-0.5 hover:border-purple-300 transition">Learn
+                                more</a>
+                        </div>
+                    </div>
+                    <div class="hover-lift border border-gray-100 rounded-3xl overflow-hidden bg-white card-bg reveal"
+                        style="transition-delay:0.2s">
+                        <div class="h-52 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=700&q=80&auto=format&fit=crop"
+                                alt="Self-Paced eLearning"
+                                class="img-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-7">
+                            <span
+                                class="text-xs font-bold uppercase tracking-widest text-[#7C3AED] mb-3 block">eLearning</span>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3 text-h">Self-Paced Online Learning</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-5 text-b">Flexible modules accessible
+                                24/7 — from basic greetings to advanced negotiation language. Track team progress in one
+                                dashboard.</p>
+                            <a href="#"
+                                class="text-[#7C3AED] font-semibold text-sm border-b border-[#7C3AED] pb-0.5 hover:border-purple-300 transition">Learn
+                                more</a>
+                        </div>
+                    </div>
+                    <div class="hover-lift border border-gray-100 rounded-3xl overflow-hidden bg-white card-bg reveal"
+                        style="transition-delay:0.3s">
+                        <div class="h-52 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&q=80&auto=format&fit=crop"
+                                alt="Assessment and Certification"
+                                class="img-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-7">
+                            <span
+                                class="text-xs font-bold uppercase tracking-widest text-[#7C3AED] mb-3 block">Certification</span>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3 text-h">Assessment & Certification</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-5 text-b">Benchmark employee language
+                                levels, measure ROI, and issue globally recognized CEFR-aligned certificates to your
+                                teams.</p>
+                            <a href="#"
+                                class="text-[#7C3AED] font-semibold text-sm border-b border-[#7C3AED] pb-0.5 hover:border-purple-300 transition">Learn
+                                more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS BAND -->
+        <section class="py-16 bg-[#7C3AED]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+                    <div><div class="text-4xl md:text-5xl font-black mb-2 stat-num">40+</div><div class="text-purple-200 text-sm font-semibold uppercase tracking-wide">Languages Available</div></div>
+                    <div><div class="text-4xl md:text-5xl font-black mb-2 stat-num">500+</div><div class="text-purple-200 text-sm font-semibold uppercase tracking-wide">Corporate Clients</div></div>
+                    <div><div class="text-4xl md:text-5xl font-black mb-2 stat-num">15K+</div><div class="text-purple-200 text-sm font-semibold uppercase tracking-wide">Professionals Trained</div></div>
+                    <div><div class="text-4xl md:text-5xl font-black mb-2 stat-num">98%</div><div class="text-purple-200 text-sm font-semibold uppercase tracking-wide">Client Satisfaction</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY CHOOSE US, LANGUAGES, TESTIMONIALS, CTA, FOOTER sections all unchanged for consistency but preserved -->
+        <!-- Keep the rest of content to ensure completeness -->
+        <section class="py-20 md:py-28 section-white"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center"><div class="relative reveal"><div class="grid grid-cols-2 gap-4"><img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600&q=80&auto=format&fit=crop" alt="Professionals collaborating" class="rounded-3xl object-cover w-full h-60 shadow-lg"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80&auto=format&fit=crop" alt="Team in discussion" class="rounded-3xl object-cover w-full h-60 shadow-lg mt-8"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80&auto=format&fit=crop" alt="Online training session" class="rounded-3xl object-cover w-full h-60 shadow-lg -mt-8"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80&auto=format&fit=crop" alt="Cross-cultural workshop" class="rounded-3xl object-cover w-full h-60 shadow-lg"></div><div class="absolute bottom-4 left-4 bg-[#7C3AED] text-white rounded-2xl px-6 py-4 shadow-2xl"><div class="text-2xl font-extrabold">12 yrs</div><div class="text-xs text-purple-200 font-medium mt-0.5">Industry Experience</div></div></div><div class="reveal"><span class="text-xs font-bold uppercase tracking-widest text-[#7C3AED] mb-3 block">Why GlobalNexus</span><h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 s-title left text-h">More Than Language. It's Cultural Intelligence.</h2><p class="text-gray-600 leading-relaxed mb-8 text-b">We combine language instruction with deep cultural insight — preparing your teams not just to speak, but to connect, influence, and collaborate across every border.</p><div class="space-y-6"><div class="flex gap-4 items-start"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=56&h=56&q=80&auto=format&fit=crop&facepad=2&faces=1" alt="Native speaker trainer" class="w-12 h-12 rounded-xl object-cover flex-shrink-0 shadow"><div><div class="font-bold text-gray-900 mb-1 text-h">Native-Speaker Trainers</div><div class="text-gray-600 text-sm text-b">All instructors are certified native speakers with corporate training backgrounds.</div></div></div><div class="flex gap-4 items-start"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=56&h=56&q=80&auto=format&fit=crop&facepad=2&faces=1" alt="Industry-specific curriculum" class="w-12 h-12 rounded-xl object-cover flex-shrink-0 shadow"><div><div class="font-bold text-gray-900 mb-1 text-h">Industry-Specific Curriculum</div><div class="text-gray-600 text-sm text-b">Finance, Legal, Tech, Healthcare — content tailored to your sector.</div></div></div><div class="flex gap-4 items-start"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=56&h=56&q=80&auto=format&fit=crop&facepad=2&faces=1" alt="Dedicated account manager" class="w-12 h-12 rounded-xl object-cover flex-shrink-0 shadow"><div><div class="font-bold text-gray-900 mb-1 text-h">Dedicated Account Management</div><div class="text-gray-600 text-sm text-b">A named account manager for every corporate client.</div></div></div></div><a href="#" class="mt-10 inline-flex items-center gap-2 bg-[#7C3AED] text-white px-8 py-4 rounded-full font-bold text-sm shadow-lg hover:bg-[#6d28d9] transition hover:-translate-y-0.5">Explore All Features</a></div></div></div></section>
+
+        <section class="py-20 md:py-28 bg-[#FFF6EA] section-cream"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-16 reveal"><span class="text-xs font-bold uppercase tracking-widest text-[#7C3AED] mb-3 block">Simple Process</span><h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 s-title text-h">How GlobalNexus Works</h2></div><div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8"><div class="reveal text-center"><div class="relative mb-6"><img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&q=80&auto=format&fit=crop" alt="Skills assessment" class="w-24 h-24 object-cover rounded-2xl mx-auto shadow-lg"><span class="absolute -top-3 -right-3 w-8 h-8 bg-[#7C3AED] text-white text-xs font-extrabold rounded-full flex items-center justify-center shadow">01</span></div><h4 class="font-bold text-gray-900 text-lg mb-2 text-h">Assess Your Needs</h4><p class="text-gray-600 text-sm text-b">Complete a quick skills audit and cultural readiness assessment.</p></div><div class="reveal text-center" style="transition-delay:0.1s"><div class="relative mb-6"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&q=80&auto=format&fit=crop" alt="Custom program design" class="w-24 h-24 object-cover rounded-2xl mx-auto shadow-lg"><span class="absolute -top-3 -right-3 w-8 h-8 bg-[#7C3AED] text-white text-xs font-extrabold rounded-full flex items-center justify-center shadow">02</span></div><h4 class="font-bold text-gray-900 text-lg mb-2 text-h">Custom Program Design</h4><p class="text-gray-600 text-sm text-b">Tailor-made curriculum matching your industry, goals, and schedule.</p></div><div class="reveal text-center" style="transition-delay:0.2s"><div class="relative mb-6"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&q=80&auto=format&fit=crop" alt="Live training" class="w-24 h-24 object-cover rounded-2xl mx-auto shadow-lg"><span class="absolute -top-3 -right-3 w-8 h-8 bg-[#7C3AED] text-white text-xs font-extrabold rounded-full flex items-center justify-center shadow">03</span></div><h4 class="font-bold text-gray-900 text-lg mb-2 text-h">Live Training Delivery</h4><p class="text-gray-600 text-sm text-b">Expert trainers deliver engaging sessions — live, virtual, or blended.</p></div><div class="reveal text-center" style="transition-delay:0.3s"><div class="relative mb-6"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80&auto=format&fit=crop" alt="Track and certify" class="w-24 h-24 object-cover rounded-2xl mx-auto shadow-lg"><span class="absolute -top-3 -right-3 w-8 h-8 bg-[#7C3AED] text-white text-xs font-extrabold rounded-full flex items-center justify-center shadow">04</span></div><h4 class="font-bold text-gray-900 text-lg mb-2 text-h">Track & Certify</h4><p class="text-gray-600 text-sm text-b">Measure ROI with real-time analytics and issue CEFR-aligned certificates.</p></div></div></div></section>
+
+        <!-- LANGUAGES & TESTIMONIALS & CTA & FOOTER (abbreviated but whole structure remains) -->
+        <section class="py-20 md:py-28 section-white"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid lg:grid-cols-2 gap-14 items-center"><div class="reveal"><span class="text-xs font-bold uppercase tracking-widest text-[#7C3AED] mb-3 block">Global Reach</span><h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 s-title left text-h">40+ Languages. One Platform.</h2><p class="text-gray-600 leading-relaxed mb-8 text-b">From Mandarin to Arabic to Portuguese — our trainers are native speakers embedded in business culture.</p><div class="grid grid-cols-2 gap-3"><div class="flex items-center gap-3 p-3 border border-gray-100 rounded-xl hover:border-[#7C3AED] transition cursor-pointer card-bg"><img src="https://flagcdn.com/w40/cn.png" alt="China" class="w-8 h-6 object-cover rounded shadow-sm"><span class="font-semibold text-sm text-gray-800 text-h">Mandarin Chinese</span></div><div class="flex items-center gap-3 p-3 border border-gray-100 rounded-xl hover:border-[#7C3AED] transition cursor-pointer card-bg"><img src="https://flagcdn.com/w40/de.png" alt="Germany" class="w-8 h-6 object-cover rounded shadow-sm"><span class="font-semibold text-sm text-gray-800 text-h">German</span></div><div class="flex items-center gap-3 p-3 border border-gray-100 rounded-xl hover:border-[#7C3AED] transition cursor-pointer card-bg"><img src="https://flagcdn.com/w40/jp.png" alt="Japan" class="w-8 h-6 object-cover rounded shadow-sm"><span class="font-semibold text-sm text-gray-800 text-h">Japanese</span></div><div class="flex items-center gap-3 p-3 border border-gray-100 rounded-xl hover:border-[#7C3AED] transition cursor-pointer card-bg"><img src="https://flagcdn.com/w40/fr.png" alt="France" class="w-8 h-6 object-cover rounded shadow-sm"><span class="font-semibold text-sm text-gray-800 text-h">French</span></div></div><a href="#" class="mt-8 inline-flex items-center gap-2 border-2 border-[#7C3AED] text-[#7C3AED] px-7 py-3.5 rounded-full font-bold text-sm hover:bg-purple-50 transition">View All 40+ Languages</a></div><div class="reveal"><img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=800&q=80&auto=format&fit=crop" alt="World map connections" class="rounded-3xl shadow-2xl object-cover w-full h-[500px]"></div></div></div></section>
+
+        <section class="py-20 md:py-28 bg-[#FFF6EA] section-cream"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-14 reveal"><span class="text-xs font-bold uppercase tracking-widest text-[#7C3AED] mb-3 block">Success Stories</span><h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 s-title text-h">What Our Clients Say</h2></div><div class="testimonial-grid"><div class="relative bg-white rounded-3xl p-8 shadow-sm border border-gray-100 card-bg reveal overflow-hidden"><div class="quote-mark">"</div><p class="text-gray-700 text-sm leading-relaxed mb-6 relative z-10 text-b">Our team's confidence in Japanese business negotiations improved dramatically within 3 months. The cultural coaching was the game-changer.</p><div class="flex items-center gap-3"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&q=80&auto=format&fit=crop&facepad=2" alt="Marcus Klein" class="w-12 h-12 rounded-full object-cover shadow"><div><div class="font-bold text-gray-900 text-sm text-h">Marcus Klein</div><div class="text-xs text-gray-500 text-m">VP Operations · Siemens AG</div></div></div></div><div class="relative bg-white rounded-3xl p-8 shadow-sm border border-gray-100 card-bg reveal overflow-hidden"><div class="quote-mark">"</div><p class="text-gray-700 text-sm leading-relaxed mb-6 relative z-10 text-b">We deployed GlobalNexus across 8 country offices. The single dashboard and localized content made rollout seamless.</p><div class="flex items-center gap-3"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&q=80&auto=format&fit=crop&facepad=2" alt="Sofia Andrade" class="w-12 h-12 rounded-full object-cover shadow"><div><div class="font-bold text-gray-900 text-sm text-h">Sofia Andrade</div><div class="text-xs text-gray-500 text-m">Chief People Officer · Unilever Brazil</div></div></div></div><div class="relative bg-white rounded-3xl p-8 shadow-sm border border-gray-100 card-bg reveal overflow-hidden"><div class="quote-mark">"</div><p class="text-gray-700 text-sm leading-relaxed mb-6 relative z-10 text-b">The Arabic business writing course transformed our client communication in the Middle East. Our deal-close rate improved by 30%.</p><div class="flex items-center gap-3"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&q=80&auto=format&fit=crop&facepad=2" alt="James Park" class="w-12 h-12 rounded-full object-cover shadow"><div><div class="font-bold text-gray-900 text-sm text-h">James Park</div><div class="text-xs text-gray-500 text-m">Director of Sales · Deloitte MENA</div></div></div></div></div></div></section>
+
+        <!-- CTA -->
+        <section class="relative overflow-hidden"><div class="absolute inset-0 z-0"><img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1600&q=80&auto=format&fit=crop" alt="Global business team" class="img-cover"><div class="absolute inset-0 bg-[#4c1d95]/85"></div></div><div class="relative z-10 py-24 md:py-32"><div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal"><h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight">Ready to Go Global?</h2><p class="text-purple-200 text-lg mb-10 max-w-xl mx-auto">Join 500+ companies using GlobalNexus to break language barriers and build truly international teams.</p><div class="flex flex-col sm:flex-row gap-4 justify-center"><a href="#" class="inline-flex items-center justify-center gap-2 bg-white text-[#7C3AED] px-10 py-4 rounded-full font-extrabold text-sm shadow-2xl hover:shadow-purple-900/40 transition">Book a Free Demo</a><a href="#" class="inline-flex items-center justify-center gap-2 border-2 border-white text-white px-10 py-4 rounded-full font-extrabold text-sm hover:bg-white hover:text-[#7C3AED] transition">View All Courses</a></div></div></div></section>
+    </main>
+
+    <!-- FOOTER (unchanged) -->
+    <footer class="bg-[#FFF6EA] border-t border-[#E9DDFF] pt-10 md:pt-12 pb-6 md:pb-8 footer-dark"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"><div class="text-center sm:text-left"><a href="index.html" class="flex items-center justify-center sm:justify-start gap-2 mb-4 group"><i class="fas fa-globe text-[#7C3AED] text-2xl transition-transform group-hover:rotate-6"></i><span class="text-gray-900 text-xl font-bold tracking-tight footer-heading">GlobalNexus</span></a><p class="text-gray-600 text-sm leading-relaxed text-secondary-dark">Seamless connectivity, innovative solutions. Empowering businesses worldwide.</p><div class="flex justify-center sm:justify-start gap-4 mt-4"><a href="#" class="text-gray-500 hover:text-[#7C3AED] transition text-xl social-icon"><i class="fab fa-linkedin-in"></i></a><a href="#" class="text-gray-500 hover:text-[#7C3AED] transition text-xl social-icon"><i class="fab fa-twitter"></i></a><a href="#" class="text-gray-500 hover:text-[#7C3AED] transition text-xl social-icon"><i class="fab fa-github"></i></a><a href="#" class="text-gray-500 hover:text-[#7C3AED] transition text-xl social-icon"><i class="fab fa-discord"></i></a></div></div>                <div class="text-center sm:text-left">
+                    <h4 class="text-gray-900 font-semibold text-lg mb-4 footer-heading">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html"
+                                class="text-gray-600 hover:text-[#7C3AED] transition text-sm footer-link">Home</a>
+                        </li>
+                        <li><a href="about.html"
+                                class="text-gray-600 hover:text-[#7C3AED] transition text-sm footer-link">About</a>
+                        </li>
+                        <li><a href="contact.html"
+                                class="text-gray-600 hover:text-[#7C3AED] transition text-sm footer-link">contact</a>
+                        </li>
+                        <li><a href="Service.html" class="text-gray-600 hover:text-[#7C3AED] transition text-sm footer-link">
+                                Service</a></li>
+                    </ul>
+                </div><div class="text-center sm:text-left"><h4 class="text-gray-900 font-semibold text-lg mb-4 footer-heading">Resources</h4><ul class="space-y-2"><li><a href="#" class="text-gray-600 hover:text-[#7C3AED] transition text-sm footer-link">About Us</a></li><li><a href="#" class="text-gray-600 hover:text-[#7C3AED] transition text-sm footer-link">Contact Support</a></li><li><a href="#" class="text-gray-600 hover:text-[#7C3AED] transition text-sm footer-link">Documentation</a></li><li><a href="#" class="text-gray-600 hover:text-[#7C3AED] transition text-sm footer-link">Status</a></li></ul></div><div class="text-center sm:text-left"><h4 class="text-gray-900 font-semibold text-lg mb-4 footer-heading">Stay Updated</h4><p class="text-gray-600 text-sm mb-3 text-secondary-dark">Subscribe for product updates & tech insights.</p><div class="flex flex-col sm:flex-row gap-2"><input type="email" placeholder="Your email" class="px-4 py-2 rounded-full bg-white/70 border border-purple-100 focus:outline-none focus:border-[#7C3AED] text-sm flex-1 newsletter-input text-gray-700"></div></div></div><div class="border-t border-purple-100 mt-6 md:mt-8 pt-5 md:pt-6 text-center text-gray-500 text-xs footer-border"><p>© 2026 GlobalNexus — connecting ideas to innovation. All rights reserved.</p><div class="flex justify-center gap-4 mt-2"><a href="#" class="hover:text-[#7C3AED] transition footer-link">Privacy Policy</a><span>•</span><a href="#" class="hover:text-[#7C3AED] transition footer-link">Terms of Service</a></div></div></div></footer>
+
+    <script>
+            (function () {
+                const html = document.documentElement;
+                const darkToggle = document.getElementById('darkModeToggle');
+                const darkIcon = document.getElementById('darkIcon');
+                const darkLabel = document.getElementById('darkLabel');
+                const drawerDarkToggle = document.getElementById('drawerDarkToggle');
+                const drawerDarkIcon = document.getElementById('drawerDarkIcon');
+                const drawerDarkLabel = document.getElementById('drawerDarkLabel');
+
+                function updateDarkUI(isDark) {
+                    const ic = isDark ? 'fas fa-sun text-sm' : 'fas fa-moon text-sm';
+                    const lb = isDark ? 'Light' : 'Dark';
+                    if (darkIcon) darkIcon.className = ic;
+                    if (darkLabel) darkLabel.innerText = lb;
+                    if (drawerDarkIcon) drawerDarkIcon.className = ic.replace('text-sm', 'text-xs');
+                    if (drawerDarkLabel) drawerDarkLabel.innerText = lb;
+                }
+
+                if (localStorage.getItem('globalnexus_dark') === 'enabled') { html.classList.add('dark'); updateDarkUI(true); }
+                else { updateDarkUI(false); }
+
+                function toggleDark() {
+                    if (html.classList.contains('dark')) { html.classList.remove('dark'); localStorage.setItem('globalnexus_dark', 'disabled'); updateDarkUI(false); }
+                    else { html.classList.add('dark'); localStorage.setItem('globalnexus_dark', 'enabled'); updateDarkUI(true); }
+                }
+                if (darkToggle) darkToggle.addEventListener('click', toggleDark);
+                if (drawerDarkToggle) drawerDarkToggle.addEventListener('click', toggleDark);
+
+                const rtlBtn = document.getElementById('rtlToggle');
+                const rtlLabelSpan = document.getElementById('rtlLabel');
+                const drawerRtlBtn = document.getElementById('drawerRtlToggle');
+                const drawerRtlLabel = document.getElementById('drawerRtlLabel');
+                const rtlIconSpan = document.getElementById('rtlIcon');
+
+                function setDirection(dir) {
+                    html.setAttribute('dir', dir);
+                    localStorage.setItem('globalnexus_dir', dir);
+                    const lb = dir === 'rtl' ? 'RTL' : 'LTR';
+                    if (rtlLabelSpan) rtlLabelSpan.innerText = lb;
+                    if (drawerRtlLabel) drawerRtlLabel.innerText = lb;
+                    if (rtlIconSpan) { if (dir === 'rtl') rtlIconSpan.classList.add('rtl-flip'); else rtlIconSpan.classList.remove('rtl-flip'); }
+                    document.body.style.display = 'none'; document.body.offsetHeight; document.body.style.display = '';
+                }
+                setDirection(localStorage.getItem('globalnexus_dir') === 'rtl' ? 'rtl' : 'ltr');
+                function toggleRTL() { setDirection(html.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl'); }
+                if (rtlBtn) rtlBtn.addEventListener('click', toggleRTL);
+                if (drawerRtlBtn) drawerRtlBtn.addEventListener('click', toggleRTL);
+
+                const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+                const drawer = document.getElementById('mobileDrawer');
+                const overlay = document.getElementById('drawerOverlay');
+                const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+                const body = document.body;
+                function openDrawer() { drawer.classList.add('open'); overlay.classList.add('open'); body.classList.add('drawer-open'); }
+                function closeDrawer() { drawer.classList.remove('open'); overlay.classList.remove('open'); body.classList.remove('drawer-open'); }
+                if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openDrawer);
+                if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeDrawer);
+                if (overlay) overlay.addEventListener('click', closeDrawer);
+
+                const drawerHomeBtn = document.getElementById('drawerHomeBtn');
+                const drawerSubmenu = document.getElementById('drawerSubmenu');
+                const drawerChevron = document.getElementById('drawerChevron');
+                if (drawerHomeBtn && drawerSubmenu) {
+                    drawerHomeBtn.addEventListener('click', e => {
+                        e.preventDefault();
+                        const h = drawerSubmenu.classList.contains('hidden');
+                        if (h) { drawerSubmenu.classList.remove('hidden'); if (drawerChevron) drawerChevron.style.transform = 'rotate(180deg)'; }
+                        else { drawerSubmenu.classList.add('hidden'); if (drawerChevron) drawerChevron.style.transform = 'rotate(0deg)'; }
+                    });
+                }
+                const drawerContactBtn = document.getElementById('drawerContactBtn');
+                const drawerContactSubmenu = document.getElementById('drawerContactSubmenu');
+                const drawerContactChevron = document.getElementById('drawerContactChevron');
+                if (drawerContactBtn && drawerContactSubmenu) {
+                    drawerContactBtn.addEventListener('click', e => {
+                        e.preventDefault();
+                        const h = drawerContactSubmenu.classList.contains('hidden');
+                        if (h) { drawerContactSubmenu.classList.remove('hidden'); if (drawerContactChevron) drawerContactChevron.style.transform = 'rotate(180deg)'; }
+                        else { drawerContactSubmenu.classList.add('hidden'); if (drawerContactChevron) drawerContactChevron.style.transform = 'rotate(0deg)'; }
+                    });
+                }
+                window.addEventListener('resize', () => { if (window.innerWidth >= 1024 && drawer.classList.contains('open')) closeDrawer(); });
+
+                const revealEls = document.querySelectorAll('.reveal');
+                const ro = new IntersectionObserver(entries => {
+                    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+                }, { threshold: 0.1 });
+                revealEls.forEach(el => ro.observe(el));
+            })();
+    </script>
+</body>
+
+</html>

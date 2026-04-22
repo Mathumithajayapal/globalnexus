@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>GlobalNexus Admin Dashboard | Responsive Control Panel</title>
+    <!-- Google Fonts + Font Awesome 6 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+                <link rel="icon" type="image/jpeg" href="images\favicon.jpg">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f0f2f8;
+            font-family: 'Inter', sans-serif;
+            color: #1a1f2e;
+            line-height: 1.4;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        /* Dark Mode Variables */
+        body.dark {
+            background: #0f0f1a;
+            color: #e2e8f0;
+        }
+        body.dark .stat-card,
+        body.dark .data-card,
+        body.dark .quick-actions,
+        body.dark .top-bar {
+            background: #1e1e2a;
+            border-color: #2d2d3a;
+        }
+        body.dark .stat-title,
+        body.dark .data-table th,
+        body.dark .data-table td {
+            color: #cbd5e1;
+        }
+        body.dark .data-table th {
+            background: #2a2a35;
+        }
+        body.dark .data-table td {
+            border-bottom-color: #2d2d3a;
+        }
+        body.dark .stat-number {
+            color: #c084fc;
+        }
+        body.dark .quick-btn {
+            background: #2a2a35;
+            border-color: #3a3a4a;
+            color: #e2e8f0;
+        }
+        body.dark .action-icons i {
+            color: #94a3b8;
+        }
+        body.dark .main-footer {
+            border-top-color: #2d2d3a;
+            color: #94a3b8;
+        }
+        body.dark .toast-msg {
+            background: #1e293b;
+        }
+        body.dark .top-bar {
+            background: #1e1e2a;
+            border-color: #2d2d3a;
+        }
+        body.dark .hamburger-btn {
+            background: #2a2a35;
+            border-color: #3a3a4a;
+            color: #e2e8f0;
+        }
+        body.dark .hamburger-btn:hover {
+            background: #7C3AED;
+            color: white;
+        }
+
+        /* RTL Support */
+        body.rtl {
+            direction: rtl;
+        }
+        body.rtl .nav-item {
+            justify-content: flex-end;
+        }
+        body.rtl .nav-item i {
+            margin-left: 8px;
+            margin-right: 0;
+        }
+        body.rtl .stat-icon {
+            float: left;
+        }
+        body.rtl .quick-btn i {
+            margin-left: 8px;
+            margin-right: 0;
+        }
+        body.rtl .main-footer {
+            flex-direction: row-reverse;
+        }
+        body.rtl .data-table th,
+        body.rtl .data-table td {
+            text-align: right;
+        }
+        body.rtl .toast-msg {
+            right: auto;
+            left: 24px;
+        }
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* ========= SIDEBAR ========= */
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, #0b1120 0%, #0f172a 100%);
+            color: #e2e8f0;
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 28px 20px;
+            transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        
+        /* Mobile Sidebar - ONLY below 900px */
+        @media (max-width: 900px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                transform: translateX(-100%);
+                width: 280px;
+                height: 100%;
+                z-index: 1050;
+                box-shadow: 0 0 30px rgba(0,0,0,0.4);
+            }
+            body.rtl .sidebar {
+                transform: translateX(100%);
+                left: auto;
+                right: 0;
+            }
+            .sidebar.open {
+                transform: translateX(0) !important;
+            }
+            .sidebar-overlay {
+                display: none;
+            }
+            .sidebar-overlay.active {
+                display: block;
+            }
+        }
+        
+        @media (min-width: 901px) {
+            .sidebar-overlay {
+                display: none !important;
+            }
+        }
+        
+        /* Hamburger Button - ONLY visible on mobile/tablet (≤900px), HIDDEN on desktop */
+        .hamburger-btn {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: white;
+            border: 1px solid #eef2f6;
+            border-radius: 40px;
+            padding: 10px 18px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1a1f2e;
+            transition: 0.2s;
+            white-space: nowrap;
+            width: fit-content;
+        }
+        
+        @media (max-width: 900px) {
+            .hamburger-btn {
+                display: flex;
+            }
+        }
+        
+        .hamburger-btn i {
+            font-size: 1.1rem;
+        }
+        .hamburger-btn:hover {
+            background: #7C3AED;
+            color: white;
+            border-color: #7C3AED;
+        }
+        
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(2px);
+            z-index: 1040;
+        }
+        
+        body.dark .sidebar {
+            background: linear-gradient(180deg, #060b14 0%, #0a0f1a 100%);
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(124,58,237,0.4);
+            border-radius: 4px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .logo-icon {
+            background: #7C3AED;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 24px;
+            color: white;
+            box-shadow: 0 8px 16px rgba(124,58,237,0.25);
+        }
+        .logo-icon i {
+            font-size: 24px;
+        }
+        .logo-text h2 {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo-text p {
+            font-size: 10px;
+            opacity: 0.65;
+            margin-top: 4px;
+        }
+
+        .admin-badge {
+            background: rgba(124,58,237,0.18);
+            border-radius: 40px;
+            padding: 12px 16px;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid rgba(124,58,237,0.25);
+        }
+        .admin-avatar {
+            background: #7C3AED;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+        }
+        .admin-info h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: white;
+        }
+        .admin-info span {
+            font-size: 11px;
+            opacity: 0.7;
+        }
+
+        .nav-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.2s;
+            color: #cbd5e6;
+            cursor: pointer;
+        }
+        .nav-item i {
+            width: 24px;
+            font-size: 1.2rem;
+        }
+        .nav-item.active {
+            background: #7C3AED;
+            color: white;
+            box-shadow: 0 6px 14px rgba(124,58,237,0.3);
+        }
+        .nav-item:not(.active):hover {
+            background: rgba(124,58,237,0.2);
+            color: white;
+        }
+
+        .sidebar-footer {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .weather-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0,0,0,0.3);
+            padding: 8px 12px;
+            border-radius: 40px;
+            font-size: 12px;
+        }
+        .logout-btn-sidebar {
+            background: rgba(220, 38, 38, 0.15);
+            color: #fca5a5;
+            padding: 12px 16px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            width: 100%;
+        }
+        .logout-btn-sidebar:hover {
+            background: #dc2626;
+            color: white;
+            border-color: #dc2626;
+        }
+
+        /* ========= MAIN CONTENT ========= */
+        .main-content {
+            flex: 1;
+            padding: 24px 28px;
+            overflow-y: auto;
+            min-height: 100vh;
+        }
+
+        /* TOP BAR - Desktop: heading on left, icons on right */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            border-radius: 60px;
+            padding: 12px 24px;
+            border: 1px solid #eef2f6;
+            margin-bottom: 28px;
+            transition: background 0.2s;
+        }
+        
+        .page-heading h1 {
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f2b3c, #7C3AED);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 0;
+        }
+        body.dark .page-heading h1 {
+            background: linear-gradient(135deg, #e2e8f0, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        
+        .action-icons {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+        .action-icons i {
+            font-size: 1.2rem;
+            color: #3b4b62;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .action-icons i:hover {
+            color: #7C3AED;
+        }
+        body.dark .action-icons i {
+            color: #94a3b8;
+        }
+        
+        /* MOBILE & TABLET VIEW (≤900px) - heading moves below hamburger row */
+        @media (max-width: 900px) {
+            .main-content {
+                padding: 16px;
+            }
+          
+            /* First row: hamburger on left, icons on right */
+            .top-bar-first-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+            }
+            /* Second row: heading full width below */
+            .top-bar-second-row {
+                width: 100%;
+                padding-top: 8px;
+                border-top: 1px solid #eef2f6;
+            }
+            body.dark .top-bar-second-row {
+                border-top-color: #2d2d3a;
+            }
+            .page-heading h1 {
+                font-size: 20px;
+            }
+            .action-icons {
+                gap: 18px;
+            }
+        }
+        @media (max-width: 900px) {
+    .top-bar {
+        flex-direction: row;   /* keep same row */
+        padding: 12px 16px;
+        border-radius: 20px;
+    }
+
+    .page-heading h1 {
+        font-size: 16px;
+    }
+
+    .action-icons {
+        gap: 14px;
+    }
+}
+        
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 12px;
+            }
+            .page-heading h1 {
+                font-size: 18px;
+            }
+            .action-icons {
+                gap: 14px;
+            }
+            .action-icons i {
+                font-size: 1rem;
+            }
+        }
+
+        /* Page Sections */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .page-section.active-section {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 22px;
+            margin-bottom: 36px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 28px;
+            padding: 20px 18px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+            border: 1px solid #eef2f6;
+        }
+        .stat-card:hover { transform: translateY(-3px); border-color: #e9d5ff; }
+        .stat-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #5b6e8c;
+            margin-bottom: 12px;
+        }
+        .stat-number {
+            font-size: 40px;
+            font-weight: 800;
+            color: #0b2b26;
+            line-height: 1;
+        }
+        .stat-icon {
+            float: right;
+            font-size: 2rem;
+            color: #d4dfed;
+        }
+
+        .data-card {
+            background: white;
+            border-radius: 28px;
+            padding: 24px;
+            border: 1px solid #eef2f6;
+            margin-bottom: 24px;
+            overflow-x: auto;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px;
+        }
+        .data-table th, .data-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #edf2f7;
+        }
+        .data-table th {
+            font-weight: 600;
+            color: #475569;
+            background: #f8fafc;
+        }
+        .badge {
+            padding: 4px 10px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge-active { background: #e0f2fe; color: #0369a1; }
+
+        .quick-actions {
+            background: white;
+            border-radius: 28px;
+            padding: 20px 24px;
+            margin-top: 8px;
+            border: 1px solid #eef2f6;
+        }
+        .quick-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .quick-btn {
+            background: #f8fafd;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #e2e8f0;
+            color: #1e293b;
+        }
+        .quick-btn i { color: #7C3AED; }
+        .quick-btn:hover {
+            background: #7C3AED;
+            color: white;
+            border-color: #7C3AED;
+            transform: translateY(-2px);
+        }
+        .quick-btn:hover i { color: white; }
+
+        .main-footer {
+            margin-top: 36px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #6c7a91;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        @media (max-width: 900px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        }
+        @media (max-width: 500px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .quick-grid { flex-direction: column; }
+            .quick-btn { justify-content: center; }
+            .main-footer { flex-direction: column; text-align: center; }
+        }
+        
+        .toast-msg {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #1e293b;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 13px;
+            z-index: 1100;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        body.rtl .toast-msg {
+            right: auto;
+            left: 24px;
+        }
+        .logo-area {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: inherit;
+}
+.logo-icon {
+    background: #7C3AED;
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 16px; /* slightly smaller for text */
+    color: white;
+    box-shadow: 0 8px 16px rgba(124,58,237,0.25);
+}
+    </style>
+</head>
+<body>
+<div class="dashboard">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    
+    <aside class="sidebar" id="mainSidebar">
+      <a href="index.html" class="logo-area">
+        <div class="logo-icon">GN</div>
+
+    <div class="logo-text">
+        <h2>GlobalNexus</h2>
+        <p>Admin Control Panel</p>
+    </div>
+</a>>
+        <div class="admin-badge">
+            <div class="admin-avatar">SA</div>
+            <div class="admin-info"><h4>Super Administrator</h4><span>full access • master</span></div>
+        </div>
+        
+        <div class="nav-menu">
+            <div class="nav-item active" data-page="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</div>
+            <div class="nav-item" data-page="cases"><i class="fas fa-folder-open"></i> All Cases</div>
+            <div class="nav-item" data-page="clients"><i class="fas fa-users"></i> Clients</div>
+            <div class="nav-item" data-page="investigators"><i class="fas fa-user-secret"></i> Investigators</div>
+            <div class="nav-item" data-page="reports"><i class="fas fa-chart-line"></i> Reports & Analytics</div>
+            <div class="nav-item" data-page="settings"><i class="fas fa-cog"></i> System Settings</div>
+        </div>
+        
+        <div class="sidebar-footer">
+            <div class="weather-info"><i class="fas fa-sun"></i><span>28°C Sunny</span></div>
+            <div class="logout-btn-sidebar" id="sidebarLogoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+     <div class="top-bar">
+    
+    <!-- LEFT SIDE -->
+    <div style="display:flex; align-items:center; gap:12px;">
+        <div class="hamburger-btn" id="hamburgerBtn">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="page-heading">
+            <h1 id="pageHeading">
+                <i class="fas fa-tachometer-alt" style="color:#7C3AED;"></i> Dashboard
+            </h1>
+        </div>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="action-icons">
+        <i class="fas fa-moon" id="darkModeIcon" title="Dark Mode"></i>
+        <i class="fas fa-globe" id="rtlIcon" title="RTL Toggle"></i>
+        <i class="fas fa-bell" id="notifIcon" title="Notifications"></i>
+        <i class="fas fa-search" id="globalSearchIcon" title="Search"></i>
+    </div>
+
+</div>
+        <!-- DASHBOARD -->
+        <div id="dashboard-section" class="page-section active-section">
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-title"><i class="fas fa-briefcase"></i> All Cases</div><div class="stat-number">24</div><div class="stat-icon"><i class="fas fa-chart-simple"></i></div></div>
+                <div class="stat-card"><div class="stat-title"><i class="fas fa-user-friends"></i> Clients</div><div class="stat-number">156</div><div class="stat-icon"><i class="fas fa-user-plus"></i></div></div>
+                <div class="stat-card"><div class="stat-title"><i class="fas fa-id-card"></i> Investigators</div><div class="stat-number">12</div><div class="stat-icon"><i class="fas fa-user-tie"></i></div></div>
+                <div class="stat-card"><div class="stat-title"><i class="fas fa-chart-pie"></i> Reports & Analytics</div><div class="stat-number">▲ 34%</div><div class="stat-icon"><i class="fas fa-chart-line"></i></div></div>
+            </div>
+            <div class="data-card">
+                <h3 style="margin-bottom: 16px;"><i class="fas fa-clock" style="color:#7C3AED;"></i> Recent Cases</h3>
+                <table class="data-table">
+                    <thead><tr><th>Case ID</th><th>Client</th><th>Type</th><th>Status</th><th>Assigned To</th><th>Updated</th></tr></thead>
+                    <tbody>
+                        <tr><td>SC-2024-001</td><td>John Carter</td><td>Corporate Fraud</td><td><span class="badge badge-active">Active</span></td><td>M. Reynolds</td><td>2 hours ago</td></tr>
+                        <tr><td>SC-2024-002</td><td>Sarah Williams</td><td>Background Check</td><td><span class="badge" style="background:#fff3e3;color:#b45309;">Review</span></td><td>S. Chen</td><td>Yesterday</td></tr>
+                        <tr><td>SC-2024-003</td><td>Michael Chen</td><td>Surveillance</td><td><span class="badge" style="background:#ffe4e2;color:#b91c1c;">Urgent</span></td><td>J. O'Connor</td><td>3 days ago</td></tr>
+                    </tbody>
+                </table>
+                <div style="margin-top: 16px; font-size:13px;"><i class="fas fa-database"></i> Showing 3 of 24 total cases</div>
+            </div>
+            <div class="quick-actions">
+                <h3><i class="fas fa-bolt" style="color:#7C3AED;"></i> Quick Actions</h3>
+                <div class="quick-grid">
+                    <div class="quick-btn" id="quickCaseBtn"><i class="fas fa-plus-circle"></i> Create New Case</div>
+                    <div class="quick-btn" id="quickClientBtn"><i class="fas fa-user-plus"></i> Add New Client</div>
+                    <div class="quick-btn" id="quickAssignBtn"><i class="fas fa-user-shield"></i> Assign Investigator</div>
+                    <div class="quick-btn" id="quickReportBtn"><i class="fas fa-chart-bar"></i> Generate Report</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ALL CASES -->
+        <div id="cases-section" class="page-section">
+            <div class="data-card"><h3><i class="fas fa-folder-open"></i> All Investigation Cases</h3>
+                <table class="data-table" style="margin-top: 16px;"><thead><tr><th>Case ID</th><th>Client</th><th>Type</th><th>Status</th><th>Priority</th><th>Assigned To</th></tr></thead>
+                <tbody>
+                    <tr><td>SC-2024-001</td><td>John Carter</td><td>Corporate Fraud</td><td><span class="badge badge-active">Active</span></td><td>High</td><td>M. Reynolds</td></tr>
+                    <tr><td>SC-2024-002</td><td>Sarah Williams</td><td>Background Check</td><td><span class="badge" style="background:#fff3e3;">Review</span></td><td>Medium</td><td>S. Chen</td></tr>
+                    <tr><td>SC-2024-003</td><td>Michael Chen</td><td>Surveillance</td><td><span class="badge" style="background:#ffe4e2;">Urgent</span></td><td>Critical</td><td>J. O'Connor</td></tr>
+                    <tr><td>SC-2024-004</td><td>Emily Davis</td><td>Cyber Crime</td><td><span class="badge badge-active">Active</span></td><td>High</td><td>R. Patel</td></tr>
+                </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- CLIENTS -->
+        <div id="clients-section" class="page-section">
+            <div class="data-card"><h3><i class="fas fa-users"></i> Client Directory</h3>
+                <table class="data-table"><thead><tr><th>Client Name</th><th>Email</th><th>Cases</th><th>Status</th><th>Since</th></tr></thead>
+                <tbody>
+                    <tr><td>John Carter</td><td>john.carter@email.com</td><td>2</td><td><span class="badge badge-active">Active</span></td><td>2023</td></tr>
+                    <tr><td>Sarah Williams</td><td>sarah.w@email.com</td><td>1</td><td><span class="badge badge-active">Active</span></td><td>2024</td></tr>
+                    <tr><td>Michael Chen</td><td>mchen@email.com</td><td>3</td><td><span class="badge badge-active">Active</span></td><td>2022</td></tr>
+                </tbody>
+                </table>
+                <div class="quick-btn" style="margin-top:20px; display:inline-flex;" id="addClientSectionBtn"><i class="fas fa-user-plus"></i> Register New Client</div>
+            </div>
+        </div>
+
+        <!-- INVESTIGATORS -->
+        <div id="investigators-section" class="page-section">
+            <div class="data-card"><h3><i class="fas fa-user-secret"></i> Investigator Team</h3>
+                <table class="data-table"><thead><tr><th>Name</th><th>Specialization</th><th>Active Cases</th><th>Status</th><th>Rating</th></tr></thead>
+                <tbody>
+                    <tr><td>M. Reynolds</td><td>Fraud Investigation</td><td>4</td><td><span class="badge badge-active">On Duty</span></td><td>⭐ 4.9</td></tr>
+                    <tr><td>S. Chen</td><td>Background & Due Diligence</td><td>3</td><td><span class="badge badge-active">On Duty</span></td><td>⭐ 4.8</td></tr>
+                    <tr><td>J. O'Connor</td><td>Surveillance</td><td>5</td><td><span class="badge badge-active">On Duty</span></td><td>⭐ 4.7</td></tr>
+                </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- REPORTS -->
+        <div id="reports-section" class="page-section">
+            <div class="stats-grid"><div class="stat-card"><div class="stat-title">Total Reports</div><div class="stat-number">48</div></div><div class="stat-card"><div class="stat-title">This Month</div><div class="stat-number">12</div></div></div>
+            <div class="data-card"><h3><i class="fas fa-chart-line"></i> Recent Analytics Reports</h3>
+                <table class="data-table"><thead><tr><th>Report Name</th><th>Type</th><th>Generated</th><th>Download</th></tr></thead>
+                <tbody>
+                    <tr><td>Q1 Case Summary</td><td>PDF</td><td>Apr 10, 2025</td><td><i class="fas fa-download" style="color:#7C3AED; cursor:pointer;"></i></td></tr>
+                    <tr><td>Investigator Performance</td><td>Excel</td><td>Apr 05, 2025</td><td><i class="fas fa-download" style="color:#7C3AED; cursor:pointer;"></i></td></tr>
+                </tbody>
+                </table>
+                <div class="quick-btn" style="margin-top:20px;" id="genReportBtn"><i class="fas fa-chart-bar"></i> Generate New Report</div>
+            </div>
+        </div>
+
+        <!-- SETTINGS -->
+        <div id="settings-section" class="page-section">
+            <div class="data-card"><h3><i class="fas fa-cog"></i> System Preferences</h3>
+                <div style="margin-top:20px; display:flex; flex-direction:column; gap:20px;">
+                    <div><label><input type="checkbox"> Enable Two-Factor Authentication</label></div>
+                    <div><label><input type="checkbox"> Email Notifications for New Cases</label></div>
+                    <div><button class="quick-btn" id="saveSettingsBtn">Save Settings</button></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-footer">
+            <div><i class="far fa-copyright"></i> GlobalNexus · Secure Admin Panel</div>
+            <div><i class="fas fa-cloud-sun"></i> 28°C Sunny · <span id="liveClock"></span></div>
+        </div>
+    </main>
+</div>
+
+<script>
+    // Dark Mode & RTL
+    let isDark = localStorage.getItem('globalnexus_dark') === 'enabled';
+    let isRTL = localStorage.getItem('globalnexus_rtl') === 'enabled';
+    
+    function applyDarkMode(enabled) {
+        if (enabled) {
+            document.body.classList.add('dark');
+            const darkIcon = document.getElementById('darkModeIcon');
+            if (darkIcon) darkIcon.className = 'fas fa-sun';
+        } else {
+            document.body.classList.remove('dark');
+            const darkIcon = document.getElementById('darkModeIcon');
+            if (darkIcon) darkIcon.className = 'fas fa-moon';
+        }
+        localStorage.setItem('globalnexus_dark', enabled ? 'enabled' : 'disabled');
+    }
+    
+    function applyRTL(enabled) {
+        if (enabled) {
+            document.body.classList.add('rtl');
+            document.documentElement.setAttribute('dir', 'rtl');
+            const rtlIcon = document.getElementById('rtlIcon');
+            if (rtlIcon) rtlIcon.style.transform = 'scaleX(-1)';
+        } else {
+            document.body.classList.remove('rtl');
+            document.documentElement.setAttribute('dir', 'ltr');
+            const rtlIcon = document.getElementById('rtlIcon');
+            if (rtlIcon) rtlIcon.style.transform = 'scaleX(1)';
+        }
+        localStorage.setItem('globalnexus_rtl', enabled ? 'enabled' : 'disabled');
+    }
+    
+    applyDarkMode(isDark);
+    applyRTL(isRTL);
+    
+    document.getElementById('darkModeIcon')?.addEventListener('click', () => {
+        isDark = !isDark;
+        applyDarkMode(isDark);
+        showToast(isDark ? "Dark mode enabled" : "Light mode enabled");
+    });
+    document.getElementById('rtlIcon')?.addEventListener('click', () => {
+        isRTL = !isRTL;
+        applyRTL(isRTL);
+        showToast(isRTL ? "RTL layout enabled" : "LTR layout enabled");
+    });
+    
+    // Mobile Sidebar
+    function closeSidebar() { 
+        document.getElementById('mainSidebar')?.classList.remove('open');
+        document.getElementById('sidebarOverlay')?.classList.remove('active');
+    }
+    function openSidebar() { 
+        document.getElementById('mainSidebar')?.classList.add('open');
+        document.getElementById('sidebarOverlay')?.classList.add('active');
+    }
+    document.getElementById('hamburgerBtn')?.addEventListener('click', openSidebar);
+    document.getElementById('sidebarOverlay')?.addEventListener('click', closeSidebar);
+    
+    function showToast(msg, icon="info-circle") {
+        const old = document.querySelector('.toast-msg');
+        if(old) old.remove();
+        const toast = document.createElement('div');
+        toast.className = 'toast-msg';
+        toast.innerHTML = `<i class="fas fa-${icon}" style="margin-right:8px;"></i> ${msg}`;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2500);
+    }
+    
+    function showPage(pageId, pageTitle) {
+        document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active-section'));
+        const target = document.getElementById(`${pageId}-section`);
+        if(target) target.classList.add('active-section');
+        const headingSpan = document.getElementById('pageHeading');
+        let iconHtml = '';
+        if (pageId === 'dashboard') iconHtml = '<i class="fas fa-tachometer-alt" style="color:#7C3AED;"></i>';
+        else if (pageId === 'cases') iconHtml = '<i class="fas fa-folder-open" style="color:#7C3AED;"></i>';
+        else if (pageId === 'clients') iconHtml = '<i class="fas fa-users" style="color:#7C3AED;"></i>';
+        else if (pageId === 'investigators') iconHtml = '<i class="fas fa-user-secret" style="color:#7C3AED;"></i>';
+        else if (pageId === 'reports') iconHtml = '<i class="fas fa-chart-line" style="color:#7C3AED;"></i>';
+        else iconHtml = '<i class="fas fa-cog" style="color:#7C3AED;"></i>';
+        headingSpan.innerHTML = `${iconHtml} ${pageTitle}`;
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.classList.remove('active');
+            if(item.getAttribute('data-page') === pageId) item.classList.add('active');
+        });
+        if(window.innerWidth <= 900) closeSidebar();
+        showToast(`Switched to ${pageTitle}`, "check-circle");
+    }
+    
+    document.querySelectorAll('.nav-item').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const page = btn.getAttribute('data-page');
+            const titles = { dashboard:'Dashboard', cases:'All Cases', clients:'Clients', investigators:'Investigators', reports:'Reports & Analytics', settings:'System Settings' };
+            showPage(page, titles[page]);
+        });
+    });
+    
+    // Quick actions
+    document.getElementById('quickCaseBtn')?.addEventListener('click', () => showToast("New case creation form (demo)", "plus-circle"));
+    document.getElementById('quickClientBtn')?.addEventListener('click', () => showToast("Add new client dialog (demo)", "user-plus"));
+    document.getElementById('quickAssignBtn')?.addEventListener('click', () => showToast("Assign investigator wizard (demo)", "user-shield"));
+    document.getElementById('quickReportBtn')?.addEventListener('click', () => showToast("Generating monthly report...", "chart-bar"));
+    document.getElementById('addClientSectionBtn')?.addEventListener('click', () => showToast("Client registration demo", "user-plus"));
+    document.getElementById('genReportBtn')?.addEventListener('click', () => showToast("New analytics report generated", "file-pdf"));
+    document.getElementById('saveSettingsBtn')?.addEventListener('click', () => showToast("Settings saved (demo)", "check-circle"));
+    document.getElementById('globalSearchIcon')?.addEventListener('click', () => { let q = prompt("Search cases, clients, or reports:"); if(q) showToast(`Searching for "${q}" (demo)`, "search"); });
+    document.getElementById('notifIcon')?.addEventListener('click', () => showToast("You have 3 unread notifications", "bell"));
+    document.getElementById('sidebarLogoutBtn')?.addEventListener('click', () => { showToast("Logout simulation: session ended", "sign-out-alt"); setTimeout(() => alert("[Demo] Logged out."), 300); });
+    
+    function updateClock() { 
+        const now = new Date(); 
+        const clockSpan = document.getElementById('liveClock');
+        if(clockSpan) clockSpan.innerText = now.toLocaleTimeString('en-US', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+    
+    window.addEventListener('resize', () => { if(window.innerWidth > 900) closeSidebar(); });
+    window.addEventListener('load', () => setTimeout(() => showToast("Welcome back, Super Administrator", "check-circle"), 500));
+</script>
+</body>
+</html>
