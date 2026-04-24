@@ -21,8 +21,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
+   
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+               <link rel="icon" type="image/jpeg" href="images\favicon.jpg">
+
+   <style>
         * {
             transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
         }
@@ -458,6 +461,38 @@
             background-color: rgba(124, 58, 237, 0.9);
             color: white;
         }
+        /* ===== MOBILE DRAWER DROPDOWN FIX (DARK MODE) ===== */
+
+/* Submenu text */
+html.dark #drawerSubmenu a,
+html.dark #drawerContactSubmenu a {
+    color: #ffffff !important;
+}
+
+/* Icons inside submenu */
+html.dark #drawerSubmenu i,
+html.dark #drawerContactSubmenu i {
+    color: #c084fc !important;
+}
+
+/* Hover effect */
+html.dark #drawerSubmenu a:hover,
+html.dark #drawerContactSubmenu a:hover {
+    color: #c084fc !important;
+    background-color: #1a1a1a !important;
+    border-radius: 6px;
+    padding-left: 6px;
+}
+
+/* Main menu text fix */
+html.dark .mobile-menu-item {
+    color: #ffffff !important;
+}
+
+/* Login text fix */
+html.dark .mobile-menu-dark a {
+    color: #ffffff !important;
+}
     </style>
 </head>
 
@@ -840,7 +875,18 @@
     </main>
 
     <!-- FOOTER (unchanged) -->
-    <footer class="bg-[#FFF6EA] border-t border-[#E9DDFF] pt-10 md:pt-12 pb-6 md:pb-8 footer-dark"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"><div class="text-center sm:text-left"><a href="index.html" class="flex items-center justify-center sm:justify-start gap-2 mb-4 group"><i class="fas fa-globe text-[#7C3AED] text-2xl transition-transform group-hover:rotate-6"></i><span class="text-gray-900 text-xl font-bold tracking-tight footer-heading">GlobalNexus</span></a><p class="text-gray-600 text-sm leading-relaxed text-secondary-dark">Seamless connectivity, innovative solutions. Empowering businesses worldwide.</p><div class="flex justify-center sm:justify-start gap-4 mt-4"><a href="#" class="text-gray-500 hover:text-[#7C3AED] transition text-xl social-icon"><i class="fab fa-linkedin-in"></i></a><a href="#" class="text-gray-500 hover:text-[#7C3AED] transition text-xl social-icon"><i class="fab fa-twitter"></i></a><a href="#" class="text-gray-500 hover:text-[#7C3AED] transition text-xl social-icon"><i class="fab fa-github"></i></a><a href="#" class="text-gray-500 hover:text-[#7C3AED] transition text-xl social-icon"><i class="fab fa-discord"></i></a></div></div>                <div class="text-center sm:text-left">
+    <footer class="bg-[#FFF6EA] border-t border-[#E9DDFF] pt-10 md:pt-12 pb-6 md:pb-8 footer-dark"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"><div class="text-center sm:text-left"><a href="index.html"
+class="flex items-center justify-center sm:justify-start gap-2 mb-4 group">
+
+    <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-[#7C3AED] text-white font-bold text-sm transition-transform group-hover:rotate-6">
+        GN
+    </div>
+
+    <span class="text-gray-900 text-xl font-bold tracking-tight footer-heading">
+        GlobalNexus
+    </span>
+
+</a><p class="text-gray-600 text-sm leading-relaxed text-secondary-dark">Seamless connectivity, innovative solutions. Empowering businesses worldwide.</p><div class="flex justify-center sm:justify-start gap-4 mt-4"><a href="#" class="text-gray-500 hover:text-[#7C3AED] transition text-xl social-icon"><i class="fab fa-linkedin-in"></i></a><a href="#" class="text-gray-500 hover:text-[#7C3AED] transition text-xl social-icon"><i class="fab fa-twitter"></i></a><a href="#" class="text-gray-500 hover:text-[#7C3AED] transition text-xl social-icon"><i class="fab fa-github"></i></a><a href="#" class="text-gray-500 hover:text-[#7C3AED] transition text-xl social-icon"><i class="fab fa-discord"></i></a></div></div>                <div class="text-center sm:text-left">
                     <h4 class="text-gray-900 font-semibold text-lg mb-4 footer-heading">Quick Links</h4>
                     <ul class="space-y-2">
                         <li><a href="index.html"
