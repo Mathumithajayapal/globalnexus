@@ -433,6 +433,14 @@
             border-radius: 8px;
             padding-left: 10px;
         }
+        html[dir="rtl"] .nav-links {
+    gap: 1.5rem; /* same as space-x-6 */
+}
+
+html[dir="rtl"] .nav-links > * {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
     </style>
 </head>
 
@@ -496,7 +504,7 @@
                                 class="block px-4 py-2.5 text-sm hover:bg-purple-50 transition flex items-center gap-2 dropdown-item">
                                 Admin</a>
                             <a href="user.html"
-                                class="block px-4 py-2.5 text-sm hover:bg-purple-50 transition flex items-center gap-2 border-t border-purple-50 dropdown-item">user</a>
+                                class="block px-4 py-2.5 text-sm hover:bg-purple-50 transition flex items-center gap-2 border-t border-purple-50 dropdown-item">User</a>
                         </div>
                     </div>
                 </div>
@@ -573,7 +581,7 @@
                                 class="fas fa-envelope text-[#7C3AED] text-xs"></i> Admin</a>
                         <a href="user.html"
                             class="block py-1.5 text-sm hover:text-[#7C3AED] transition flex items-center gap-2 nav-text"><i
-                                class="fas fa-headset text-[#7C3AED] text-xs"></i> user </a>
+                                class="fas fa-headset text-[#7C3AED] text-xs"></i> User </a>
                     </div>
                 </div>
                 <div class="pt-4 space-y-4">

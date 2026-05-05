@@ -20,7 +20,7 @@
     <!-- Google Fonts + Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-                <link rel="icon" type="image/jpeg" href="images\favicon.jpg">
+    <link rel="icon" type="image/jpeg" href="images\favicon.jpg">
 
     <style>
         * {
@@ -246,17 +246,20 @@
             border-color: #1f2937 !important;
         }
         
-        /* Hero section - text always white */
+        /* Hero section with background image */
         .service-hero {
-            background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 50%, #5b21b6 100%);
             position: relative;
+            background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&h=800&fit=crop');
+            background-size: cover;
+            background-position: center 30%;
+            background-repeat: no-repeat;
         }
         
         .service-hero::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.5) 100%);
             pointer-events: none;
         }
         
@@ -275,11 +278,12 @@
         }
         
         .service-hero .bg-purple-50 {
-            background-color: rgba(255, 255, 255, 0.15) !important;
+            background-color: rgba(255, 255, 255, 0.2) !important;
+            backdrop-filter: blur(4px);
         }
         
         .service-hero .bg-white\/80 {
-            background-color: rgba(0, 0, 0, 0.4) !important;
+            background-color: rgba(0, 0, 0, 0.5) !important;
             border-color: rgba(255, 255, 255, 0.2) !important;
         }
         
@@ -379,6 +383,30 @@
         html.dark .divider-color {
             background-color: #374151 !important;
         }
+        
+        /* Hero animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-animate {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        html[dir="rtl"] .nav-links {
+    gap: 1.5rem; /* same as space-x-6 */
+}
+
+html[dir="rtl"] .nav-links > * {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
     </style>
 </head>
 <body class="bg-white font-sans antialiased">
@@ -442,7 +470,7 @@
                                 class="block px-4 py-2.5 text-sm hover:bg-purple-50 transition flex items-center gap-2 dropdown-item">
                                 Admin</a>
                             <a href="user.html"
-                                class="block px-4 py-2.5 text-sm hover:bg-purple-50 transition flex items-center gap-2 border-t border-purple-50 dropdown-item">user</a>
+                                class="block px-4 py-2.5 text-sm hover:bg-purple-50 transition flex items-center gap-2 border-t border-purple-50 dropdown-item">User</a>
                         </div>
                     </div>
                 </div>
@@ -519,7 +547,7 @@
                                 class="fas fa-envelope text-[#7C3AED] text-xs"></i> Admin</a>
                         <a href="user.html"
                             class="block py-1.5 text-sm hover:text-[#7C3AED] transition flex items-center gap-2 nav-text"><i
-                                class="fas fa-headset text-[#7C3AED] text-xs"></i> user </a>
+                                class="fas fa-headset text-[#7C3AED] text-xs"></i> User </a>
                     </div>
                 </div>
                 <div class="pt-4 space-y-4">
@@ -539,12 +567,12 @@
         </div>
     </div>
 
-    <!-- ========== SERVICES PAGE: PREMIUM MODERN LAYOUT ========== -->
+    <!-- ========== SERVICES PAGE: HERO WITH BACKGROUND IMAGE ========== -->
     <main>
-        <!-- Hero Section -->
+        <!-- Hero Section with Background Image -->
         <div class="service-hero relative overflow-hidden">
             <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-                <div class="max-w-4xl mx-auto text-center">
+                <div class="max-w-4xl mx-auto text-center hero-animate">
                     <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-5 py-2 mb-6 shadow-sm">
                         <span class="text-xs font-bold text-white tracking-wide">🌍 WHERE LANGUAGE MEETS CULTURE</span>
                     </div>
@@ -577,7 +605,7 @@
                         <div class="absolute top-4 left-4 top-badge px-3 py-1 rounded-full text-white text-xs font-bold shadow-lg">⭐ RECOMMENDED</div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Empowering  Communication</h3>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Empowering Communication</h3>
                         <p class="text-[#7C3AED] text-sm font-semibold mb-3">Cross-border collaboration mastery</p>
                         <p class="text-gray-600 leading-relaxed mb-4">Proven frameworks to reduce expat failure rates by 28%. Includes manager toolkits, language micro-learning, and inclusion metrics trusted by Fortune 500 HR teams worldwide.</p>
                         <div class="flex flex-wrap gap-2 mb-4"><span class="text-xs bg-gray-100 px-2 py-1 rounded-full">🌐 40+ languages</span><span class="text-xs bg-gray-100 px-2 py-1 rounded-full">📡 Real-time support</span></div>
@@ -607,7 +635,7 @@
                         <div class="absolute top-4 left-4 top-badge px-3 py-1 rounded-full text-white text-xs font-bold shadow-lg">⭐ RECOMMENDED</div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Building Confident  Teams</h3>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Building Confident Teams</h3>
                         <p class="text-[#7C3AED] text-sm font-semibold mb-3">Psychological safety & leadership</p>
                         <p class="text-gray-600 leading-relaxed mb-4">Proven frameworks to reduce expat failure rates by 28%. Includes manager toolkits, language micro-learning, and inclusion metrics trusted by Fortune 500 HR teams worldwide.</p>
                         <div class="flex flex-wrap gap-2 mb-4"><span class="text-xs bg-gray-100 px-2 py-1 rounded-full">🚀 98% retention</span><span class="text-xs bg-gray-100 px-2 py-1 rounded-full">📊 Data-driven insights</span></div>

@@ -226,6 +226,14 @@
         .hero-text-light {
             text-shadow: 0 2px 12px rgba(0,0,0,0.25);
         }
+        html[dir="rtl"] .nav-links {
+    gap: 1.5rem; /* same as space-x-6 */
+}
+
+html[dir="rtl"] .nav-links > * {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
     </style>
 </head>
 <body class="bg-white font-sans antialiased">
@@ -264,7 +272,7 @@
                     </a>
                     <div class="contact-dropdown absolute left-0 mt-2 w-48 bg-white rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-purple-100 overflow-hidden dropdown-bg">
                         <a href="admin.html" class="block px-4 py-2.5 text-sm hover:bg-purple-50 transition flex items-center gap-2 dropdown-item">Admin</a>
-                        <a href="user.html" class="block px-4 py-2.5 text-sm hover:bg-purple-50 transition flex items-center gap-2 border-t border-purple-50 dropdown-item">user</a>
+                        <a href="user.html" class="block px-4 py-2.5 text-sm hover:bg-purple-50 transition flex items-center gap-2 border-t border-purple-50 dropdown-item">User</a>
                     </div>
                 </div>
             </div>
@@ -314,7 +322,7 @@
                 </div>
                 <div id="drawerContactSubmenu" class="hidden pl-4 mt-2 space-y-2">
                     <a href="admin.html" class="block py-1.5 text-sm hover:text-[#7C3AED] transition flex items-center gap-2 nav-text"><i class="fas fa-envelope text-[#7C3AED] text-xs"></i> Admin</a>
-                    <a href="user.html" class="block py-1.5 text-sm hover:text-[#7C3AED] transition flex items-center gap-2 nav-text"><i class="fas fa-headset text-[#7C3AED] text-xs"></i> user</a>
+                    <a href="user.html" class="block py-1.5 text-sm hover:text-[#7C3AED] transition flex items-center gap-2 nav-text"><i class="fas fa-headset text-[#7C3AED] text-xs"></i> User</a>
                 </div>
             </div>
             <div class="pt-4 space-y-4">
@@ -604,7 +612,7 @@
     </section>
 
     <!-- ===== CTA SECTION ===== -->
-    <section class="cta-gradient py-20 md:py-24"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal"><div class="floating-icon text-5xl mb-6">🌐</div><h2 class="text-3xl md:text-5xl font-extrabold text-white mb-5 leading-tight">Ready to Go Global?</h2><p class="text-purple-200 text-lg mb-8 max-w-2xl mx-auto">Join 500+ companies using GlobalNexus to break language barriers and build truly international teams.</p><div class="flex flex-col sm:flex-row gap-4 justify-center"><a href="#" class="inline-flex items-center justify-center gap-2 bg-white text-[#7C3AED] px-8 py-4 rounded-full font-bold text-sm shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition">Book a Free Demo <i class="fas fa-arrow-right text-xs"></i></a><a href="#" class="inline-flex items-center justify-center gap-2 border-2 border-white text-white px-8 py-4 rounded-full font-bold text-sm hover:bg-white hover:text-[#7C3AED] transition">View All Courses</a></div></div></section>
+    <section class="cta-gradient py-20 md:py-24"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal"><div class="floating-icon text-5xl mb-6"></div><h2 class="text-3xl md:text-5xl font-extrabold text-white mb-5 leading-tight">Ready to Go Global?</h2><p class="text-purple-200 text-lg mb-8 max-w-2xl mx-auto">Join 500+ companies using GlobalNexus to break language barriers and build truly international teams.</p><div class="flex flex-col sm:flex-row gap-4 justify-center"><a href="#" class="inline-flex items-center justify-center gap-2 bg-white text-[#7C3AED] px-8 py-4 rounded-full font-bold text-sm shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition">Book a Free Demo <i class="fas fa-arrow-right text-xs"></i></a><a href="#" class="inline-flex items-center justify-center gap-2 border-2 border-white text-white px-8 py-4 rounded-full font-bold text-sm hover:bg-white hover:text-[#7C3AED] transition">View All Courses</a></div></div></section>
 
 </main>
 

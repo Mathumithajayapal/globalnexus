@@ -395,6 +395,45 @@
         .grid .course-card {
             height: 100%;
         }
+        
+        /* Small icon styling for consistency */
+        .small-icon {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+        }
+        .container-footer-icon {
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(124, 58, 237, 0.15);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7rem;
+            color: #7C3AED;
+        }
+        html.dark .container-footer-icon {
+            border-top-color: rgba(167, 139, 250, 0.2);
+        }
+        
+        /* Make right side image fill entire column without spacing */
+        .trust-image-col {
+            background-image: url('https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=600&fit=crop');
+            background-size: cover;
+            background-position: center;
+            min-height: 100%;
+        }
+        html.dark .trust-image-col {
+            opacity: 0.9;
+        }
+        html[dir="rtl"] .nav-links {
+    gap: 1.5rem; /* same as space-x-6 */
+}
+
+html[dir="rtl"] .nav-links > * {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
     </style>
 </head>
 <body class="bg-white font-sans antialiased">
@@ -458,7 +497,7 @@
                                 class="block px-4 py-2.5 text-sm hover:bg-purple-50 transition flex items-center gap-2 dropdown-item">
                                 Admin</a>
                             <a href="user.html"
-                                class="block px-4 py-2.5 text-sm hover:bg-purple-50 transition flex items-center gap-2 border-t border-purple-50 dropdown-item">user</a>
+                                class="block px-4 py-2.5 text-sm hover:bg-purple-50 transition flex items-center gap-2 border-t border-purple-50 dropdown-item">User</a>
                         </div>
                     </div>
                 </div>
@@ -535,7 +574,7 @@
                                 class="fas fa-envelope text-[#7C3AED] text-xs"></i> Admin</a>
                         <a href="user.html"
                             class="block py-1.5 text-sm hover:text-[#7C3AED] transition flex items-center gap-2 nav-text"><i
-                                class="fas fa-headset text-[#7C3AED] text-xs"></i> user </a>
+                                class="fas fa-headset text-[#7C3AED] text-xs"></i> User </a>
                     </div>
                 </div>
                 <div class="pt-4 space-y-4">
@@ -573,21 +612,21 @@
             </div>
         </div>
 
-        <!-- Browse by Category Section -->
+        <!-- Browse by Category Section with Small Icons -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="text-center mb-10">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Browse by Category</h2>
                 <div class="w-20 h-1 bg-[#7C3AED] mx-auto mt-3 rounded-full"></div>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-                <div class="category-badge rounded-2xl p-5 border border-purple-100 text-center hover:shadow-md transition"><div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-3"><i class="fas fa-language text-[#7C3AED] text-xl"></i></div><h3 class="font-bold text-gray-900">🔹 Language Training</h3><p class="text-xs text-gray-500 mt-1">English, German, French & more</p></div>
-                <div class="category-badge rounded-2xl p-5 border border-purple-100 text-center hover:shadow-md transition"><div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-3"><i class="fas fa-bullhorn text-[#7C3AED] text-xl"></i></div><h3 class="font-bold text-gray-900">🔹 Business Communication</h3><p class="text-xs text-gray-500 mt-1">Presentations, meetings, emails</p></div>
-                <div class="category-badge rounded-2xl p-5 border border-purple-100 text-center hover:shadow-md transition"><div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-3"><i class="fas fa-globe-asia text-[#7C3AED] text-xl"></i></div><h3 class="font-bold text-gray-900">🔹 Cross-Cultural Training</h3><p class="text-xs text-gray-500 mt-1">Navigate global differences</p></div>
-                <div class="category-badge rounded-2xl p-5 border border-purple-100 text-center hover:shadow-md transition"><div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-3"><i class="fas fa-building text-[#7C3AED] text-xl"></i></div><h3 class="font-bold text-gray-900">🔹 Corporate Programs</h3><p class="text-xs text-gray-500 mt-1">Custom team upskilling</p></div>
+                <div class="category-badge rounded-2xl p-5 border border-purple-100 text-center hover:shadow-md transition"><div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-3"><i class="fas fa-language text-[#7C3AED] text-xl"></i></div><h3 class="font-bold text-gray-900">🔹 Language Training</h3><p class="text-xs text-gray-500 mt-1">English, German, French & more</p><div class="container-footer-icon"><i class="fas fa-graduation-cap small-icon"></i><span>12 courses available</span></div></div>
+                <div class="category-badge rounded-2xl p-5 border border-purple-100 text-center hover:shadow-md transition"><div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-3"><i class="fas fa-bullhorn text-[#7C3AED] text-xl"></i></div><h3 class="font-bold text-gray-900">🔹 Business Communication</h3><p class="text-xs text-gray-500 mt-1">Presentations, meetings, emails</p><div class="container-footer-icon"><i class="fas fa-chalkboard-user small-icon"></i><span>8 courses available</span></div></div>
+                <div class="category-badge rounded-2xl p-5 border border-purple-100 text-center hover:shadow-md transition"><div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-3"><i class="fas fa-globe-asia text-[#7C3AED] text-xl"></i></div><h3 class="font-bold text-gray-900">🔹 Cross-Cultural Training</h3><p class="text-xs text-gray-500 mt-1">Navigate global differences</p><div class="container-footer-icon"><i class="fas fa-handshake small-icon"></i><span>6 courses available</span></div></div>
+                <div class="category-badge rounded-2xl p-5 border border-purple-100 text-center hover:shadow-md transition"><div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-3"><i class="fas fa-building text-[#7C3AED] text-xl"></i></div><h3 class="font-bold text-gray-900">🔹 Corporate Programs</h3><p class="text-xs text-gray-500 mt-1">Custom team upskilling</p><div class="container-footer-icon"><i class="fas fa-users small-icon"></i><span>10+ enterprise solutions</span></div></div>
             </div>
         </div>
 
-        <!-- Why Choose GlobalNexus -->
+        <!-- Why Choose GlobalNexus with Small Icons -->
         <div class="bg-gradient-to-r from-purple-50 to-indigo-50 py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12">
@@ -596,160 +635,51 @@
                     <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Trusted by 1,200+ enterprises for language and cultural training</p>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white rounded-2xl p-6 text-center shadow-md border border-purple-100"><div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-4"><i class="fas fa-chalkboard-user text-2xl text-[#7C3AED]"></i></div><h3 class="font-bold text-lg text-gray-900 mb-2">Expert Instructors</h3><p class="text-sm text-gray-600">Native-speaking coaches with 10+ years of corporate training experience.</p></div>
-                    <div class="bg-white rounded-2xl p-6 text-center shadow-md border border-purple-100"><div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-4"><i class="fas fa-certificate text-2xl text-[#7C3AED]"></i></div><h3 class="font-bold text-lg text-gray-900 mb-2">Globally Recognized</h3><p class="text-sm text-gray-600">Courses accredited by international bodies and Fortune 500-approved.</p></div>
-                    <div class="bg-white rounded-2xl p-6 text-center shadow-md border border-purple-100"><div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-4"><i class="fas fa-laptop-code text-2xl text-[#7C3AED]"></i></div><h3 class="font-bold text-lg text-gray-900 mb-2">Flexible Learning</h3><p class="text-sm text-gray-600">Live online, self-paced, and hybrid options to fit any schedule.</p></div>
-                    <div class="bg-white rounded-2xl p-6 text-center shadow-md border border-purple-100"><div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-4"><i class="fas fa-chart-line text-2xl text-[#7C3AED]"></i></div><h3 class="font-bold text-lg text-gray-900 mb-2">Proven Results</h3><p class="text-sm text-gray-600">98% client satisfaction and measurable ROI for corporate partners.</p></div>
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-md border border-purple-100"><div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-4"><i class="fas fa-chalkboard-user text-2xl text-[#7C3AED]"></i></div><h3 class="font-bold text-lg text-gray-900 mb-2">Expert Instructors</h3><p class="text-sm text-gray-600">Native-speaking coaches with 10+ years of corporate training experience.</p><div class="container-footer-icon justify-center"><i class="fas fa-star small-icon"></i><span>100+ certified coaches</span></div></div>
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-md border border-purple-100"><div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-4"><i class="fas fa-certificate text-2xl text-[#7C3AED]"></i></div><h3 class="font-bold text-lg text-gray-900 mb-2">Globally Recognized</h3><p class="text-sm text-gray-600">Courses accredited by international bodies and Fortune 500-approved.</p><div class="container-footer-icon justify-center"><i class="fas fa-award small-icon"></i><span>ISO 21001 certified</span></div></div>
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-md border border-purple-100"><div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-4"><i class="fas fa-laptop-code text-2xl text-[#7C3AED]"></i></div><h3 class="font-bold text-lg text-gray-900 mb-2">Flexible Learning</h3><p class="text-sm text-gray-600">Live online, self-paced, and hybrid options to fit any schedule.</p><div class="container-footer-icon justify-center"><i class="fas fa-clock small-icon"></i><span>Learn anytime, anywhere</span></div></div>
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-md border border-purple-100"><div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-4"><i class="fas fa-chart-line text-2xl text-[#7C3AED]"></i></div><h3 class="font-bold text-lg text-gray-900 mb-2">Proven Results</h3><p class="text-sm text-gray-600">98% client satisfaction and measurable ROI for corporate partners.</p><div class="container-footer-icon justify-center"><i class="fas fa-chart-simple small-icon"></i><span>98% satisfaction rate</span></div></div>
                 </div>
             </div>
         </div>
 
-        <!-- Course Cards Grid - ALL BUTTONS ALIGNED AT BOTTOM -->
-        <div class="bg-gray-50/50 py-12">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Our Popular Courses</h2>
-                    <div class="w-20 h-1 bg-[#7C3AED] mx-auto mt-3 rounded-full"></div>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
-                    
-                    <!-- Course 1 -->
-                    <div class="course-card bg-white rounded-2xl overflow-hidden shadow-md border border-purple-100 group">
-                        <div class="h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&h=300&fit=crop" alt="Business English" class="w-full h-full object-cover img-hover"></div>
-                        <div class="p-5 card-body">
-                            <div class="card-content">
-                                <div class="flex justify-between items-start mb-2 flex-wrap gap-2"><h3 class="font-bold text-xl text-gray-900">Business English Essentials</h3><span class="level-badge bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full text-xs font-semibold shrink-0">Beginner → Intermediate</span></div>
-                                <div class="flex items-center gap-3 text-xs text-gray-500 mb-3"><span><i class="far fa-clock text-[#7C3AED]"></i> 6 Weeks</span><span><i class="fas fa-chalkboard-user text-[#7C3AED]"></i> Online</span></div>
-                                <p class="text-gray-600 text-sm">Build strong communication skills for meetings, emails, and presentations in a professional environment.</p>
-                            </div>
-                            <div class="card-footer mt-4 flex items-center justify-between"><span class="text-xs text-gray-400">🎓 Certificate included</span><a href="#" class="text-[#7C3AED] text-sm font-medium hover:underline">Learn more →</a></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Course 2 -->
-                    <div class="course-card bg-white rounded-2xl overflow-hidden shadow-md border border-purple-100 group">
-                        <div class="h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=500&h=300&fit=crop" alt="Business Writing" class="w-full h-full object-cover img-hover"></div>
-                        <div class="p-5 card-body">
-                            <div class="card-content">
-                                <div class="flex justify-between items-start mb-2 flex-wrap gap-2"><h3 class="font-bold text-xl text-gray-900">Advanced Business Writing</h3><span class="level-badge bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full text-xs font-semibold shrink-0">Intermediate → Advanced</span></div>
-                                <div class="flex items-center gap-3 text-xs text-gray-500 mb-3"><span><i class="far fa-clock text-[#7C3AED]"></i> 5 Weeks</span><span><i class="fas fa-chalkboard-user text-[#7C3AED]"></i> Online</span></div>
-                                <p class="text-gray-600 text-sm">Master professional emails, reports, and proposals with clarity and impact. Perfect for managers and executives.</p>
-                            </div>
-                            <div class="card-footer mt-4 flex items-center justify-between"><span class="text-xs text-gray-400">📝 Writing toolkit</span><a href="#" class="text-[#7C3AED] text-sm font-medium hover:underline">Learn more →</a></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Course 3 -->
-                    <div class="course-card bg-white rounded-2xl overflow-hidden shadow-md border border-purple-100 group">
-                        <div class="h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=300&fit=crop" alt="Cross Cultural" class="w-full h-full object-cover img-hover"></div>
-                        <div class="p-5 card-body">
-                            <div class="card-content">
-                                <div class="flex justify-between items-start mb-2 flex-wrap gap-2"><h3 class="font-bold text-xl text-gray-900">Cross-Cultural Intelligence</h3><span class="level-badge bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full text-xs font-semibold shrink-0">All Levels</span></div>
-                                <div class="flex items-center gap-3 text-xs text-gray-500 mb-3"><span><i class="far fa-clock text-[#7C3AED]"></i> 4 Weeks</span><span><i class="fas fa-chalkboard-user text-[#7C3AED]"></i> Live + Self-paced</span></div>
-                                <p class="text-gray-600 text-sm">Navigate cultural differences, improve global collaboration, and build stronger international relationships.</p>
-                            </div>
-                            <div class="card-footer mt-4 flex items-center justify-between"><span class="text-xs text-gray-400">🌍 20+ country profiles</span><a href="#" class="text-[#7C3AED] text-sm font-medium hover:underline">Learn more →</a></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Course 4 -->
-                    <div class="course-card bg-white rounded-2xl overflow-hidden shadow-md border border-purple-100 group">
-                        <div class="h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=500&h=300&fit=crop" alt="Public Speaking" class="w-full h-full object-cover img-hover"></div>
-                        <div class="p-5 card-body">
-                            <div class="card-content">
-                                <div class="flex justify-between items-start mb-2 flex-wrap gap-2"><h3 class="font-bold text-xl text-gray-900">Presentation & Public Speaking</h3><span class="level-badge bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full text-xs font-semibold shrink-0">Intermediate</span></div>
-                                <div class="flex items-center gap-3 text-xs text-gray-500 mb-3"><span><i class="far fa-clock text-[#7C3AED]"></i> 4 Weeks</span><span><i class="fas fa-chalkboard-user text-[#7C3AED]"></i> Live Online</span></div>
-                                <p class="text-gray-600 text-sm">Deliver impactful presentations, handle Q&A with confidence, and engage diverse audiences effectively.</p>
-                            </div>
-                            <div class="card-footer mt-4 flex items-center justify-between"><span class="text-xs text-gray-400">🎤 Video feedback</span><a href="#" class="text-[#7C3AED] text-sm font-medium hover:underline">Learn more →</a></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Course 5 -->
-                    <div class="course-card bg-white rounded-2xl overflow-hidden shadow-md border border-purple-100 group">
-                        <div class="h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=500&h=300&fit=crop" alt="German Language" class="w-full h-full object-cover img-hover"></div>
-                        <div class="p-5 card-body">
-                            <div class="card-content">
-                                <div class="flex justify-between items-start mb-2 flex-wrap gap-2"><h3 class="font-bold text-xl text-gray-900">German for Business</h3><span class="level-badge bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full text-xs font-semibold shrink-0">Beginner → Intermediate</span></div>
-                                <div class="flex items-center gap-3 text-xs text-gray-500 mb-3"><span><i class="far fa-clock text-[#7C3AED]"></i> 8 Weeks</span><span><i class="fas fa-chalkboard-user text-[#7C3AED]"></i> Online</span></div>
-                                <p class="text-gray-600 text-sm">Learn workplace German for meetings, calls, and correspondence. Tailored for professionals in DACH markets.</p>
-                            </div>
-                            <div class="card-footer mt-4 flex items-center justify-between"><span class="text-xs text-gray-400">🇩🇪 Native instructors</span><a href="#" class="text-[#7C3AED] text-sm font-medium hover:underline">Learn more →</a></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Course 6 -->
-                    <div class="course-card bg-white rounded-2xl overflow-hidden shadow-md border border-purple-100 group">
-                        <div class="h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=500&h=300&fit=crop" alt="Negotiation" class="w-full h-full object-cover img-hover"></div>
-                        <div class="p-5 card-body">
-                            <div class="card-content">
-                                <div class="flex justify-between items-start mb-2 flex-wrap gap-2"><h3 class="font-bold text-xl text-gray-900">Global Negotiation Skills</h3><span class="level-badge bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full text-xs font-semibold shrink-0">Advanced</span></div>
-                                <div class="flex items-center gap-3 text-xs text-gray-500 mb-3"><span><i class="far fa-clock text-[#7C3AED]"></i> 5 Weeks</span><span><i class="fas fa-chalkboard-user text-[#7C3AED]"></i> Live + Roleplay</span></div>
-                                <p class="text-gray-600 text-sm">Master cross-border negotiation strategies, cultural nuances, and deal-closing communication techniques.</p>
-                            </div>
-                            <div class="card-footer mt-4 flex items-center justify-between"><span class="text-xs text-gray-400">🎭 Simulated cases</span><a href="#" class="text-[#7C3AED] text-sm font-medium hover:underline">Learn more →</a></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Course 7 -->
-                    <div class="course-card bg-white rounded-2xl overflow-hidden shadow-md border border-purple-100 group">
-                        <div class="h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=500&h=300&fit=crop" alt="French Language" class="w-full h-full object-cover img-hover"></div>
-                        <div class="p-5 card-body">
-                            <div class="card-content">
-                                <div class="flex justify-between items-start mb-2 flex-wrap gap-2"><h3 class="font-bold text-xl text-gray-900">French for Global Teams</h3><span class="level-badge bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full text-xs font-semibold shrink-0">Beginner → Intermediate</span></div>
-                                <div class="flex items-center gap-3 text-xs text-gray-500 mb-3"><span><i class="far fa-clock text-[#7C3AED]"></i> 7 Weeks</span><span><i class="fas fa-chalkboard-user text-[#7C3AED]"></i> Online</span></div>
-                                <p class="text-gray-600 text-sm">Practical French for business settings — from introductions to client relationships across Francophone regions.</p>
-                            </div>
-                            <div class="card-footer mt-4 flex items-center justify-between"><span class="text-xs text-gray-400">🇫🇷 Business focus</span><a href="#" class="text-[#7C3AED] text-sm font-medium hover:underline">Learn more →</a></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Course 8 -->
-                    <div class="course-card bg-white rounded-2xl overflow-hidden shadow-md border border-purple-100 group">
-                        <div class="h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&h=300&fit=crop" alt="Corporate Team" class="w-full h-full object-cover img-hover"></div>
-                        <div class="p-5 card-body">
-                            <div class="card-content">
-                                <div class="flex justify-between items-start mb-2 flex-wrap gap-2"><h3 class="font-bold text-xl text-gray-900">Corporate Team Communication</h3><span class="level-badge bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full text-xs font-semibold shrink-0">All Levels</span></div>
-                                <div class="flex items-center gap-3 text-xs text-gray-500 mb-3"><span><i class="far fa-clock text-[#7C3AED]"></i> 6 Weeks</span><span><i class="fas fa-chalkboard-user text-[#7C3AED]"></i> Group / Corporate</span></div>
-                                <p class="text-gray-600 text-sm">Custom program for organizations — improve meeting effectiveness, email etiquette, and cross-department alignment.</p>
-                            </div>
-                            <div class="card-footer mt-4 flex items-center justify-between"><span class="text-xs text-gray-400">🏢 Enterprise-ready</span><a href="#" class="text-[#7C3AED] text-sm font-medium hover:underline">Learn more →</a></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Course 9 -->
-                    <div class="course-card bg-white rounded-2xl overflow-hidden shadow-md border border-purple-100 group">
-                        <div class="h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=500&h=300&fit=crop" alt="Virtual Teams" class="w-full h-full object-cover img-hover"></div>
-                        <div class="p-5 card-body">
-                            <div class="card-content">
-                                <div class="flex justify-between items-start mb-2 flex-wrap gap-2"><h3 class="font-bold text-xl text-gray-900">Leading Global Virtual Teams</h3><span class="level-badge bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full text-xs font-semibold shrink-0">Advanced</span></div>
-                                <div class="flex items-center gap-3 text-xs text-gray-500 mb-3"><span><i class="far fa-clock text-[#7C3AED]"></i> 4 Weeks</span><span><i class="fas fa-chalkboard-user text-[#7C3AED]"></i> Live Executive</span></div>
-                                <p class="text-gray-600 text-sm">Leadership strategies for asynchronous workflows, time zone management, and inclusive remote team culture.</p>
-                            </div>
-                            <div class="card-footer mt-4 flex items-center justify-between"><span class="text-xs text-gray-400">🌍 40+ countries</span><a href="#" class="text-[#7C3AED] text-sm font-medium hover:underline">Learn more →</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Certification & Recognition -->
+        <!-- Certification & Recognition with Image FULL FILL - No spacing -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div class="bg-white rounded-3xl shadow-xl border border-purple-100 overflow-hidden">
                 <div class="grid md:grid-cols-2">
-                    <div class="p-8 md:p-10"><div class="inline-block bg-purple-100 text-purple-700 text-xs font-bold px-3 py-1 rounded-full mb-4">TRUST & CREDENTIALS</div><h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Certification & Recognition</h2><p class="text-gray-600 mb-6">All GlobalNexus courses come with internationally recognized certificates, accredited by leading industry bodies. Our programs are trusted by Fortune 500 companies and global institutions.</p><div class="space-y-3"><div class="flex items-center gap-3"><i class="fas fa-check-circle text-[#7C3AED] text-lg"></i><span class="text-gray-700">ISO 21001 Certified Training Provider</span></div><div class="flex items-center gap-3"><i class="fas fa-check-circle text-[#7C3AED] text-lg"></i><span class="text-gray-700">Recognized by the British Council & Goethe-Institut</span></div><div class="flex items-center gap-3"><i class="fas fa-check-circle text-[#7C3AED] text-lg"></i><span class="text-gray-700">Corporate Training Excellence Award 2025</span></div><div class="flex items-center gap-3"><i class="fas fa-check-circle text-[#7C3AED] text-lg"></i><span class="text-gray-700">CPD Accredited Programs</span></div></div><a href="#" class="inline-block mt-6 bg-[#7C3AED] text-white px-6 py-2.5 rounded-full font-medium hover:bg-[#6d28d9] transition">Download certification guide →</a></div>
-                    <div class="bg-gradient-to-br from-purple-100 to-indigo-100 p-8 flex items-center justify-center"><div class="text-center"><i class="fas fa-award text-7xl text-[#7C3AED] opacity-60 mb-4"></i><p class="text-gray-700 font-semibold">Recognized Worldwide</p><p class="text-sm text-gray-500 mt-1">Credentials that open doors globally</p></div></div>
+                    <div class="p-8 md:p-10">
+                        <div class="inline-block bg-purple-100 text-purple-700 text-xs font-bold px-3 py-1 rounded-full mb-4">TRUST & CREDENTIALS</div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Certification & Recognition</h2>
+                        <p class="text-gray-600 mb-6">All GlobalNexus courses come with internationally recognized certificates, accredited by leading industry bodies. Our programs are trusted by Fortune 500 companies and global institutions.</p>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3"><i class="fas fa-check-circle text-[#7C3AED] text-lg"></i><span class="text-gray-700">ISO 21001 Certified Training Provider</span></div>
+                            <div class="flex items-center gap-3"><i class="fas fa-check-circle text-[#7C3AED] text-lg"></i><span class="text-gray-700">Recognized by the British Council & Goethe-Institut</span></div>
+                            <div class="flex items-center gap-3"><i class="fas fa-check-circle text-[#7C3AED] text-lg"></i><span class="text-gray-700">Corporate Training Excellence Award 2025</span></div>
+                            <div class="flex items-center gap-3"><i class="fas fa-check-circle text-[#7C3AED] text-lg"></i><span class="text-gray-700">CPD Accredited Programs</span></div>
+                        </div>
+                        <div class="container-footer-icon mt-6" style="border-top: none; padding-top: 0;"><i class="fas fa-globe small-icon"></i><span>Recognized in 40+ countries worldwide</span></div>
+                        <a href="#" class="inline-block mt-6 bg-[#7C3AED] text-white px-6 py-2.5 rounded-full font-medium hover:bg-[#6d28d9] transition">Download certification guide →</a>
+                    </div>
+                    <div class="trust-image-col w-full h-full min-h-[400px] md:min-h-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=600&fit=crop');">
+                        <!-- Overlay content for text - optional decorative -->
+                        <div class="h-full w-full flex flex-col items-center justify-center bg-black/30 p-8 text-center">
+                            <i class="fas fa-award text-5xl text-white opacity-80 mb-3"></i>
+                            <p class="text-white font-semibold text-lg">Recognized Worldwide</p>
+                            <p class="text-white/80 text-sm mt-1">Credentials that open doors globally</p>
+                            <div class="mt-3 flex items-center gap-2 text-white/70 text-xs"><i class="fas fa-certificate"></i><span>Lifetime validity</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Category Details Section -->
+        <!-- Category Details Section with Small Icons -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="p-5 rounded-xl border border-purple-100 bg-white"><h3 class="font-bold text-gray-900 mb-2">🔹 Language Training</h3><p class="text-sm text-gray-600">Develop fluency in global languages such as English, German, French, and more, with a focus on workplace communication.</p><a href="#" class="text-xs text-[#7C3AED] mt-3 inline-block">View courses →</a></div>
-                <div class="p-5 rounded-xl border border-purple-100 bg-white"><h3 class="font-bold text-gray-900 mb-2">🔹 Business Communication</h3><p class="text-sm text-gray-600">Enhance professional skills including presentations, meetings, negotiations, and email writing.</p><a href="#" class="text-xs text-[#7C3AED] mt-3 inline-block">View courses →</a></div>
-                <div class="p-5 rounded-xl border border-purple-100 bg-white"><h3 class="font-bold text-gray-900 mb-2">🔹 Cross-Cultural Training</h3><p class="text-sm text-gray-600">Learn to navigate cultural differences, improve collaboration, and build stronger international relationships.</p><a href="#" class="text-xs text-[#7C3AED] mt-3 inline-block">View courses →</a></div>
-                <div class="p-5 rounded-xl border border-purple-100 bg-white"><h3 class="font-bold text-gray-900 mb-2">🔹 Corporate Programs</h3><p class="text-sm text-gray-600">Customized training solutions designed for organizations to upskill teams and improve global performance.</p><a href="#" class="text-xs text-[#7C3AED] mt-3 inline-block">View courses →</a></div>
+                <div class="p-5 rounded-xl border border-purple-100 bg-white"><h3 class="font-bold text-gray-900 mb-2">🔹 Language Training</h3><p class="text-sm text-gray-600">Develop fluency in global languages such as English, German, French, and more, communication.</p><div class="container-footer-icon"><i class="fas fa-microphone-alt small-icon"></i><span>Speaking focus</span><i class="fas fa-pen-fancy small-icon ml-2"></i><span>Writing workshops</span></div></div>
+                <div class="p-5 rounded-xl border border-purple-100 bg-white"><h3 class="font-bold text-gray-900 mb-2">🔹 Business Communication</h3><p class="text-sm text-gray-600">Enhance professional skills including presentations, meetings, negotiations, and email writing.</p><div class="container-footer-icon"><i class="fas fa-chart-line small-icon"></i><span>Executive track</span><i class="fas fa-users small-icon ml-2"></i><span>Team modules</span></div></div>
+                <div class="p-5 rounded-xl border border-purple-100 bg-white"><h3 class="font-bold text-gray-900 mb-2">🔹 Cross-Cultural Training</h3><p class="text-sm text-gray-600">Learn to navigate cultural differences, improve collaboration, and build stronger international relationships.</p><div class="container-footer-icon"><i class="fas fa-globe small-icon"></i><span>40+ countries</span><i class="fas fa-hand-peace small-icon ml-2"></i><span>Inclusive strategies</span></div></div>
+                <div class="p-5 rounded-xl border border-purple-100 bg-white"><h3 class="font-bold text-gray-900 mb-2">🔹 Corporate Programs</h3><p class="text-sm text-gray-600">Customized training solutions designed for organizations to upskill teams and improve global performance.</p><div class="container-footer-icon"><i class="fas fa-building small-icon"></i><span>Enterprise-ready</span><i class="fas fa-chart-simple small-icon ml-2"></i><span>ROI tracking</span></div></div>
             </div>
         </div>
 

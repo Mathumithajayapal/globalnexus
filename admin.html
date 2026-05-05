@@ -7,7 +7,7 @@
     <!-- Google Fonts + Font Awesome 6 -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-                <link rel="icon" type="image/jpeg" href="images\favicon.jpg">
+    <link rel="icon" type="image/jpeg" href="images\favicon.jpg">
 
     <style>
         * {
@@ -166,7 +166,7 @@
             }
         }
         
-        /* Hamburger Button - ONLY visible on mobile/tablet (≤900px), HIDDEN on desktop */
+        /* Hamburger Button - ONLY visible on mobile/tablet (≤900px) */
         .hamburger-btn {
             display: none;
             align-items: center;
@@ -227,12 +227,14 @@
         }
 
         .logo-area {
+            text-decoration: none;
             display: flex;
             align-items: center;
             gap: 12px;
             margin-bottom: 32px;
             padding-bottom: 20px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            color: inherit;
         }
         .logo-icon {
             background: #7C3AED;
@@ -243,12 +245,9 @@
             align-items: center;
             justify-content: center;
             font-weight: 800;
-            font-size: 24px;
+            font-size: 16px;
             color: white;
             box-shadow: 0 8px 16px rgba(124,58,237,0.25);
-        }
-        .logo-icon i {
-            font-size: 24px;
         }
         .logo-text h2 {
             font-size: 24px;
@@ -361,6 +360,7 @@
             transition: all 0.2s;
             border: 1px solid rgba(220, 38, 38, 0.3);
             width: 100%;
+            text-decoration: none;
         }
         .logout-btn-sidebar:hover {
             background: #dc2626;
@@ -376,7 +376,7 @@
             min-height: 100vh;
         }
 
-        /* TOP BAR - Desktop: heading on left, icons on right */
+        /* TOP BAR */
         .top-bar {
             display: flex;
             align-items: center;
@@ -418,67 +418,29 @@
         .action-icons i:hover {
             color: #7C3AED;
         }
-        body.dark .action-icons i {
-            color: #94a3b8;
-        }
         
-        /* MOBILE & TABLET VIEW (≤900px) - heading moves below hamburger row */
         @media (max-width: 900px) {
             .main-content {
                 padding: 16px;
             }
-          
-            /* First row: hamburger on left, icons on right */
-            .top-bar-first-row {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                width: 100%;
-            }
-            /* Second row: heading full width below */
-            .top-bar-second-row {
-                width: 100%;
-                padding-top: 8px;
-                border-top: 1px solid #eef2f6;
-            }
-            body.dark .top-bar-second-row {
-                border-top-color: #2d2d3a;
-            }
-            .page-heading h1 {
-                font-size: 20px;
-            }
-            .action-icons {
-                gap: 18px;
-            }
-        }
-        @media (max-width: 900px) {
-    .top-bar {
-        flex-direction: row;   /* keep same row */
-        padding: 12px 16px;
-        border-radius: 20px;
-    }
-
-    .page-heading h1 {
-        font-size: 16px;
-    }
-
-    .action-icons {
-        gap: 14px;
-    }
-}
-        
-        @media (max-width: 480px) {
-            .main-content {
-                padding: 12px;
+            .top-bar {
+                flex-wrap: wrap;
+                gap: 12px;
             }
             .page-heading h1 {
                 font-size: 18px;
             }
             .action-icons {
-                gap: 14px;
+                gap: 16px;
             }
-            .action-icons i {
-                font-size: 1rem;
+        }
+        
+        @media (max-width: 480px) {
+            .page-heading h1 {
+                font-size: 16px;
+            }
+            .action-icons {
+                gap: 12px;
             }
         }
 
@@ -529,21 +491,51 @@
             color: #d4dfed;
         }
 
+        /* Data Card with improved spacing */
         .data-card {
             background: white;
             border-radius: 28px;
-            padding: 24px;
+            padding: 28px 28px;
             border: 1px solid #eef2f6;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
             overflow-x: auto;
+            transition: background 0.2s;
         }
+        
+        /* Enhanced heading styles within data cards */
+        .data-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #1e293b;
+            letter-spacing: -0.2px;
+            border-left: 4px solid #7C3AED;
+            padding-left: 16px;
+        }
+        body.dark .data-card h3 {
+            color: #f1f5f9;
+        }
+        .data-card h3 i {
+            font-size: 1.4rem;
+            color: #7C3AED;
+        }
+        
+        /* Extra spacing wrapper for tables inside data cards */
+        .table-wrapper {
+            margin-top: 8px;
+            margin-bottom: 12px;
+        }
+        
         .data-table {
             width: 100%;
             border-collapse: collapse;
             min-width: 500px;
         }
         .data-table th, .data-table td {
-            padding: 12px 16px;
+            padding: 14px 16px;
             text-align: left;
             border-bottom: 1px solid #edf2f7;
         }
@@ -551,31 +543,48 @@
             font-weight: 600;
             color: #475569;
             background: #f8fafc;
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
+        }
+        body.dark .data-table th {
+            background: #252530;
+            color: #cbd5e1;
         }
         .badge {
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 40px;
             font-size: 12px;
             font-weight: 600;
+            display: inline-block;
         }
         .badge-active { background: #e0f2fe; color: #0369a1; }
+        body.dark .badge-active { background: #0c4a6e; color: #bae6fd; }
 
+        /* Quick Actions */
         .quick-actions {
             background: white;
             border-radius: 28px;
-            padding: 20px 24px;
+            padding: 24px 28px;
             margin-top: 8px;
             border: 1px solid #eef2f6;
+        }
+        .quick-actions h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         .quick-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 16px;
-            margin-top: 16px;
+            margin-top: 8px;
         }
         .quick-btn {
             background: #f8fafd;
-            padding: 12px 20px;
+            padding: 12px 22px;
             border-radius: 50px;
             font-weight: 600;
             font-size: 14px;
@@ -597,20 +606,22 @@
         .quick-btn:hover i { color: white; }
 
         .main-footer {
-            margin-top: 36px;
+            margin-top: 44px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 12px;
             color: #6c7a91;
             border-top: 1px solid #e2e8f0;
-            padding-top: 20px;
+            padding-top: 24px;
             flex-wrap: wrap;
             gap: 12px;
         }
 
         @media (max-width: 900px) {
             .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .data-card { padding: 20px; }
+            .data-card h3 { font-size: 1.2rem; margin-bottom: 18px; }
         }
         @media (max-width: 500px) {
             .stats-grid { grid-template-columns: 1fr; }
@@ -625,7 +636,7 @@
             right: 24px;
             background: #1e293b;
             color: white;
-            padding: 10px 20px;
+            padding: 10px 22px;
             border-radius: 40px;
             font-size: 13px;
             z-index: 1100;
@@ -635,29 +646,6 @@
             right: auto;
             left: 24px;
         }
-        .logo-area {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: inherit;
-}
-.logo-icon {
-    background: #7C3AED;
-    width: 44px;
-    height: 44px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 16px; /* slightly smaller for text */
-    color: white;
-    box-shadow: 0 8px 16px rgba(124,58,237,0.25);
-}
-#sidebarLogoutBtn {
-    text-decoration: none;
-}
     </style>
 </head>
 <body>
@@ -665,14 +653,13 @@
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     
     <aside class="sidebar" id="mainSidebar">
-      <a href="index.html" class="logo-area">
-        <div class="logo-icon">GN</div>
-
-    <div class="logo-text">
-        <h2>GlobalNexus</h2>
-        <p>Admin Control Panel</p>
-    </div>
-</a>
+        <a href="index.html" class="logo-area">
+            <div class="logo-icon">GN</div>
+            <div class="logo-text">
+                <h2>GlobalNexus</h2>
+                <p>Admin Control Panel</p>
+            </div>
+        </a>
         <div class="admin-badge">
             <div class="admin-avatar">SA</div>
             <div class="admin-info"><h4>Super Administrator</h4><span>full access • master</span></div>
@@ -688,42 +675,36 @@
         </div>
         
         <div class="sidebar-footer">
-    <div class="weather-info">
-        <i class="fas fa-sun"></i><span>28°C Sunny</span>
-    </div>
-    
-    <a href="login.html" class="logout-btn-sidebar" id="sidebarLogoutBtn">
-        <i class="fas fa-sign-out-alt"></i> Logout
-    </a>
-</div>
+            <div class="weather-info">
+                <i class="fas fa-sun"></i><span>28°C Sunny</span>
+            </div>
+            <a href="login.html" class="logout-btn-sidebar" id="sidebarLogoutBtn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
     </aside>
 
     <main class="main-content">
-     <div class="top-bar">
-    
-    <!-- LEFT SIDE -->
-    <div style="display:flex; align-items:center; gap:12px;">
-        <div class="hamburger-btn" id="hamburgerBtn">
-            <i class="fas fa-bars"></i>
+        <div class="top-bar">
+            <div style="display:flex; align-items:center; gap:12px;">
+                <div class="hamburger-btn" id="hamburgerBtn">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="page-heading">
+                    <h1 id="pageHeading">
+                        <i class="fas fa-tachometer-alt" style="color:#7C3AED;"></i> Dashboard
+                    </h1>
+                </div>
+            </div>
+            <div class="action-icons">
+                <i class="fas fa-moon" id="darkModeIcon" title="Dark Mode"></i>
+                <i class="fas fa-globe" id="rtlIcon" title="RTL Toggle"></i>
+                <i class="fas fa-bell" id="notifIcon" title="Notifications"></i>
+                <i class="fas fa-search" id="globalSearchIcon" title="Search"></i>
+            </div>
         </div>
 
-        <div class="page-heading">
-            <h1 id="pageHeading">
-                <i class="fas fa-tachometer-alt" style="color:#7C3AED;"></i> Dashboard
-            </h1>
-        </div>
-    </div>
-
-    <!-- RIGHT SIDE -->
-    <div class="action-icons">
-        <i class="fas fa-moon" id="darkModeIcon" title="Dark Mode"></i>
-        <i class="fas fa-globe" id="rtlIcon" title="RTL Toggle"></i>
-        <i class="fas fa-bell" id="notifIcon" title="Notifications"></i>
-        <i class="fas fa-search" id="globalSearchIcon" title="Search"></i>
-    </div>
-
-</div>
-        <!-- DASHBOARD -->
+        <!-- DASHBOARD SECTION -->
         <div id="dashboard-section" class="page-section active-section">
             <div class="stats-grid">
                 <div class="stat-card"><div class="stat-title"><i class="fas fa-briefcase"></i> All Cases</div><div class="stat-number">24</div><div class="stat-icon"><i class="fas fa-chart-simple"></i></div></div>
@@ -732,19 +713,21 @@
                 <div class="stat-card"><div class="stat-title"><i class="fas fa-chart-pie"></i> Reports & Analytics</div><div class="stat-number">▲ 34%</div><div class="stat-icon"><i class="fas fa-chart-line"></i></div></div>
             </div>
             <div class="data-card">
-                <h3 style="margin-bottom: 16px;"><i class="fas fa-clock" style="color:#7C3AED;"></i> Recent Cases</h3>
-                <table class="data-table">
-                    <thead><tr><th>Case ID</th><th>Client</th><th>Type</th><th>Status</th><th>Assigned To</th><th>Updated</th></tr></thead>
-                    <tbody>
-                        <tr><td>SC-2024-001</td><td>John Carter</td><td>Corporate Fraud</td><td><span class="badge badge-active">Active</span></td><td>M. Reynolds</td><td>2 hours ago</td></tr>
-                        <tr><td>SC-2024-002</td><td>Sarah Williams</td><td>Background Check</td><td><span class="badge" style="background:#fff3e3;color:#b45309;">Review</span></td><td>S. Chen</td><td>Yesterday</td></tr>
-                        <tr><td>SC-2024-003</td><td>Michael Chen</td><td>Surveillance</td><td><span class="badge" style="background:#ffe4e2;color:#b91c1c;">Urgent</span></td><td>J. O'Connor</td><td>3 days ago</td></tr>
-                    </tbody>
-                </table>
-                <div style="margin-top: 16px; font-size:13px;"><i class="fas fa-database"></i> Showing 3 of 24 total cases</div>
+                <h3><i class="fas fa-clock"></i> Recent Cases</h3>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead><tr><th>Case ID</th><th>Client</th><th>Type</th><th>Status</th><th>Assigned To</th><th>Updated</th></tr></thead>
+                        <tbody>
+                            <tr><td>SC-2024-001</td><td>John Carter</td><td>Corporate Fraud</td><td><span class="badge badge-active">Active</span></td><td>M. Reynolds</td><td>2 hours ago</td></tr>
+                            <tr><td>SC-2024-002</td><td>Sarah Williams</td><td>Background Check</td><td><span class="badge" style="background:#fff3e3;color:#b45309;">Review</span></td><td>S. Chen</td><td>Yesterday</td></tr>
+                            <tr><td>SC-2024-003</td><td>Michael Chen</td><td>Surveillance</td><td><span class="badge" style="background:#ffe4e2;color:#b91c1c;">Urgent</span></td><td>J. O'Connor</td><td>3 days ago</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="margin-top: 20px; font-size:13px;"><i class="fas fa-database"></i> Showing 3 of 24 total cases</div>
             </div>
             <div class="quick-actions">
-                <h3><i class="fas fa-bolt" style="color:#7C3AED;"></i> Quick Actions</h3>
+                <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
                 <div class="quick-grid">
                     <div class="quick-btn" id="quickCaseBtn"><i class="fas fa-plus-circle"></i> Create New Case</div>
                     <div class="quick-btn" id="quickClientBtn"><i class="fas fa-user-plus"></i> Add New Client</div>
@@ -754,68 +737,92 @@
             </div>
         </div>
 
-        <!-- ALL CASES -->
+        <!-- ALL CASES SECTION -->
         <div id="cases-section" class="page-section">
-            <div class="data-card"><h3><i class="fas fa-folder-open"></i> All Investigation Cases</h3>
-                <table class="data-table" style="margin-top: 16px;"><thead><tr><th>Case ID</th><th>Client</th><th>Type</th><th>Status</th><th>Priority</th><th>Assigned To</th></tr></thead>
-                <tbody>
-                    <tr><td>SC-2024-001</td><td>John Carter</td><td>Corporate Fraud</td><td><span class="badge badge-active">Active</span></td><td>High</td><td>M. Reynolds</td></tr>
-                    <tr><td>SC-2024-002</td><td>Sarah Williams</td><td>Background Check</td><td><span class="badge" style="background:#fff3e3;">Review</span></td><td>Medium</td><td>S. Chen</td></tr>
-                    <tr><td>SC-2024-003</td><td>Michael Chen</td><td>Surveillance</td><td><span class="badge" style="background:#ffe4e2;">Urgent</span></td><td>Critical</td><td>J. O'Connor</td></tr>
-                    <tr><td>SC-2024-004</td><td>Emily Davis</td><td>Cyber Crime</td><td><span class="badge badge-active">Active</span></td><td>High</td><td>R. Patel</td></tr>
-                </tbody>
-                </table>
+            <div class="data-card">
+                <h3><i class="fas fa-folder-open"></i> All Investigation Cases</h3>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead><tr><th>Case ID</th><th>Client</th><th>Type</th><th>Status</th><th>Priority</th><th>Assigned To</th></tr></thead>
+                        <tbody>
+                            <tr><td>SC-2024-001</td><td>John Carter</td><td>Corporate Fraud</td><td><span class="badge badge-active">Active</span></td><td>High</td><td>M. Reynolds</td></tr>
+                            <tr><td>SC-2024-002</td><td>Sarah Williams</td><td>Background Check</td><td><span class="badge" style="background:#fff3e3;">Review</span></td><td>Medium</td><td>S. Chen</td></tr>
+                            <tr><td>SC-2024-003</td><td>Michael Chen</td><td>Surveillance</td><td><span class="badge" style="background:#ffe4e2;">Urgent</span></td><td>Critical</td><td>J. O'Connor</td></tr>
+                            <tr><td>SC-2024-004</td><td>Emily Davis</td><td>Cyber Crime</td><td><span class="badge badge-active">Active</span></td><td>High</td><td>R. Patel</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
-        <!-- CLIENTS -->
+        <!-- CLIENTS SECTION (Improved Spacing: heading + table separated) -->
         <div id="clients-section" class="page-section">
-            <div class="data-card"><h3><i class="fas fa-users"></i> Client Directory</h3>
-                <table class="data-table"><thead><tr><th>Client Name</th><th>Email</th><th>Cases</th><th>Status</th><th>Since</th></tr></thead>
-                <tbody>
-                    <tr><td>John Carter</td><td>john.carter@email.com</td><td>2</td><td><span class="badge badge-active">Active</span></td><td>2023</td></tr>
-                    <tr><td>Sarah Williams</td><td>sarah.w@email.com</td><td>1</td><td><span class="badge badge-active">Active</span></td><td>2024</td></tr>
-                    <tr><td>Michael Chen</td><td>mchen@email.com</td><td>3</td><td><span class="badge badge-active">Active</span></td><td>2022</td></tr>
-                </tbody>
-                </table>
-                <div class="quick-btn" style="margin-top:20px; display:inline-flex;" id="addClientSectionBtn"><i class="fas fa-user-plus"></i> Register New Client</div>
+            <div class="data-card">
+                <h3><i class="fas fa-users"></i> Client Directory</h3>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead><tr><th>Client Name</th><th>Email</th><th>Cases</th><th>Status</th><th>Since</th></tr></thead>
+                        <tbody>
+                            <tr><td>John Carter</td><td>john.carter@email.com</td><td>2</td><td><span class="badge badge-active">Active</span></td><td>2023</td></tr>
+                            <tr><td>Sarah Williams</td><td>sarah.w@email.com</td><td>1</td><td><span class="badge badge-active">Active</span></td><td>2024</td></tr>
+                            <tr><td>Michael Chen</td><td>mchen@email.com</td><td>3</td><td><span class="badge badge-active">Active</span></td><td>2022</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="margin-top: 28px;">
+                    <div class="quick-btn" id="addClientSectionBtn"><i class="fas fa-user-plus"></i> Register New Client</div>
+                </div>
             </div>
         </div>
 
-        <!-- INVESTIGATORS -->
+        <!-- INVESTIGATORS SECTION (Improved Spacing) -->
         <div id="investigators-section" class="page-section">
-            <div class="data-card"><h3><i class="fas fa-user-secret"></i> Investigator Team</h3>
-                <table class="data-table"><thead><tr><th>Name</th><th>Specialization</th><th>Active Cases</th><th>Status</th><th>Rating</th></tr></thead>
-                <tbody>
-                    <tr><td>M. Reynolds</td><td>Fraud Investigation</td><td>4</td><td><span class="badge badge-active">On Duty</span></td><td>⭐ 4.9</td></tr>
-                    <tr><td>S. Chen</td><td>Background & Due Diligence</td><td>3</td><td><span class="badge badge-active">On Duty</span></td><td>⭐ 4.8</td></tr>
-                    <tr><td>J. O'Connor</td><td>Surveillance</td><td>5</td><td><span class="badge badge-active">On Duty</span></td><td>⭐ 4.7</td></tr>
-                </tbody>
-                </table>
+            <div class="data-card">
+                <h3><i class="fas fa-user-secret"></i> Investigator Team</h3>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead><tr><th>Name</th><th>Specialization</th><th>Active Cases</th><th>Status</th><th>Rating</th></tr></thead>
+                        <tbody>
+                            <tr><td>M. Reynolds</td><td>Fraud Investigation</td><td>4</td><td><span class="badge badge-active">On Duty</span></td><td>⭐ 4.9</td></tr>
+                            <tr><td>S. Chen</td><td>Background & Due Diligence</td><td>3</td><td><span class="badge badge-active">On Duty</span></td><td>⭐ 4.8</td></tr>
+                            <tr><td>J. O'Connor</td><td>Surveillance</td><td>5</td><td><span class="badge badge-active">On Duty</span></td><td>⭐ 4.7</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
-        <!-- REPORTS -->
+        <!-- REPORTS & ANALYTICS SECTION (Spacing improved) -->
         <div id="reports-section" class="page-section">
-            <div class="stats-grid"><div class="stat-card"><div class="stat-title">Total Reports</div><div class="stat-number">48</div></div><div class="stat-card"><div class="stat-title">This Month</div><div class="stat-number">12</div></div></div>
-            <div class="data-card"><h3><i class="fas fa-chart-line"></i> Recent Analytics Reports</h3>
-                <table class="data-table"><thead><tr><th>Report Name</th><th>Type</th><th>Generated</th><th>Download</th></tr></thead>
-                <tbody>
-                    <tr><td>Q1 Case Summary</td><td>PDF</td><td>Apr 10, 2025</td><td><i class="fas fa-download" style="color:#7C3AED; cursor:pointer;"></i></td></tr>
-                    <tr><td>Investigator Performance</td><td>Excel</td><td>Apr 05, 2025</td><td><i class="fas fa-download" style="color:#7C3AED; cursor:pointer;"></i></td></tr>
-                </tbody>
-                </table>
-                <div class="quick-btn" style="margin-top:20px;" id="genReportBtn"><i class="fas fa-chart-bar"></i> Generate New Report</div>
+            <div class="stats-grid" style="margin-bottom: 28px;">
+                <div class="stat-card"><div class="stat-title">Total Reports</div><div class="stat-number">48</div></div>
+                <div class="stat-card"><div class="stat-title">This Month</div><div class="stat-number">12</div></div>
+            </div>
+            <div class="data-card">
+                <h3><i class="fas fa-chart-line"></i> Recent Analytics Reports</h3>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead><tr><th>Report Name</th><th>Type</th><th>Generated</th><th>Download</th></tr></thead>
+                        <tbody>
+                            <tr><td>Q1 Case Summary</td><td>PDF</td><td>Apr 10, 2025</td><td><i class="fas fa-download" style="color:#7C3AED; cursor:pointer;"></i></td></tr>
+                            <tr><td>Investigator Performance</td><td>Excel</td><td>Apr 05, 2025</td><td><i class="fas fa-download" style="color:#7C3AED; cursor:pointer;"></i></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="margin-top: 28px;">
+                    <div class="quick-btn" id="genReportBtn"><i class="fas fa-chart-bar"></i> Generate New Report</div>
+                </div>
             </div>
         </div>
 
-        <!-- SETTINGS -->
+        <!-- SETTINGS SECTION -->
         <div id="settings-section" class="page-section">
-            <div class="data-card"><h3><i class="fas fa-cog"></i> System Preferences</h3>
-                <div style="margin-top:20px; display:flex; flex-direction:column; gap:20px;">
-                    <div><label><input type="checkbox"> Enable Two-Factor Authentication</label></div>
-                    <div><label><input type="checkbox"> Email Notifications for New Cases</label></div>
-                    <div><button class="quick-btn" id="saveSettingsBtn">Save Settings</button></div>
+            <div class="data-card">
+                <h3><i class="fas fa-cog"></i> System Preferences</h3>
+                <div style="margin-top: 24px; display:flex; flex-direction:column; gap: 24px;">
+                    <div><label style="display:flex; align-items:center; gap:12px;"><input type="checkbox"> Enable Two-Factor Authentication</label></div>
+                    <div><label style="display:flex; align-items:center; gap:12px;"><input type="checkbox"> Email Notifications for New Cases</label></div>
+                    <div><button class="quick-btn" id="saveSettingsBtn" style="width:fit-content;">Save Settings</button></div>
                 </div>
             </div>
         </div>
