@@ -60,19 +60,6 @@
     font-weight: 600;
   }
 
-  body:not(.dark-mode) .social-google,
-  body:not(.dark-mode) .social-linkedin {
-    background-color: #ffffff;
-    border-color: #cbd5e1;
-    color: #0f172a;
-  }
-
-  body:not(.dark-mode) .social-google:hover,
-  body:not(.dark-mode) .social-linkedin:hover {
-    background-color: #f8fafc;
-    border-color: #a78bfa;
-  }
-
   /* DARK MODE */
   body.dark-mode {
     background: linear-gradient(135deg, #0b1120 0%, #1a1a2e 100%);
@@ -102,17 +89,74 @@
     color: #e2e8f0 !important;
   }
 
-  body.dark-mode .social-google,
-  body.dark-mode .social-linkedin {
+  /* Social button base styling - light mode icons visible */
+  .social-auth-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  
+  /* Light mode - ensure icons are visible with proper colors */
+  body:not(.dark-mode) .social-auth-btn {
+    background-color: #ffffff;
+    border-color: #cbd5e1;
+  }
+  
+  body:not(.dark-mode) .social-auth-btn:hover {
+    background-color: #f8fafc;
+    border-color: #a78bfa;
+  }
+  
+  /* Light mode icon specific colors - high visibility */
+  body:not(.dark-mode) .google-icon {
+    color: #4285F4;
+  }
+  
+  body:not(.dark-mode) .instagram-icon {
+    color: #E4405F;
+  }
+  
+  body:not(.dark-mode) .apple-icon {
+    color: #1e293b;
+  }
+  
+  /* Dark mode icon colors */
+  body.dark-mode .social-auth-btn {
     background-color: #2d3a4e;
     border-color: #546e7a;
-    color: #f1f5f9;
   }
-
-  body.dark-mode .social-google:hover,
-  body.dark-mode .social-linkedin:hover {
+  
+  body.dark-mode .social-auth-btn:hover {
     background-color: #3b4b62;
     border-color: #c084fc;
+  }
+  
+  body.dark-mode .google-icon {
+    color: #4285F4;
+  }
+  
+  body.dark-mode .instagram-icon {
+    color: #E4405F;
+  }
+  
+  body.dark-mode .apple-icon {
+    color: #ffffff;
+  }
+  
+  /* Button text styling for both modes */
+  .social-auth-btn .btn-text {
+    font-size: 0.75rem;
+  }
+  
+  body:not(.dark-mode) .social-auth-btn .btn-text {
+    color: #334155;
+  }
+  
+  body.dark-mode .social-auth-btn .btn-text {
+    color: #e2e8f0;
   }
 
   /* Card styling - optimized to fit without scroll on desktop */
@@ -142,10 +186,6 @@
 
   .submit-arrow {
     transition: transform 0.1s ease;
-  }
-
-  .terms-label {
-    line-height: 1.4;
   }
 
   /* FIXED TOGGLE BUTTONS OUTSIDE CARD */
@@ -228,7 +268,7 @@
     white-space: nowrap;
   }
   
-  /* Optimized spacing - no scroll needed on desktop */
+  /* Optimized spacing */
   input {
     width: 100%;
     font-size: 15px !important;
@@ -241,7 +281,7 @@
     font-size: 0.85rem;
   }
   
-  /* ===== DESKTOP OPTIMIZATION - NO SCROLL ===== */
+  /* ===== DESKTOP OPTIMIZATION ===== */
   @media (min-width: 1024px) {
     body {
       padding: 20px;
@@ -333,6 +373,10 @@
     input {
       padding: 10px 14px !important;
     }
+    
+    .social-auth-btn .btn-text {
+      display: none;
+    }
   }
   
   @media (max-width: 480px) {
@@ -354,11 +398,6 @@
       width: 34px;
       height: 34px;
       font-size: 0.85rem;
-    }
-    
-    .social-google, .social-linkedin {
-      padding: 8px 10px !important;
-      font-size: 0.75rem !important;
     }
     
     .btn-content {
@@ -395,10 +434,6 @@
     .grid-cols-2 {
       grid-template-columns: 1fr;
       gap: 8px;
-    }
-    
-    .social-google, .social-linkedin {
-      justify-content: center;
     }
   }
   
@@ -443,6 +478,26 @@
     color: #e2e8f0 !important;
   }
   
+  /* Social buttons grid */
+  .grid-cols-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .grid-cols-3 button {
+    transition: all 0.2s ease;
+  }
+  
+  .grid-cols-3 button:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Icon sizes */
+  .social-auth-btn i {
+    font-size: 1.2rem;
+  }
+  
 </style>
 </head>
 <body>
@@ -459,7 +514,7 @@
     </button>
   </div>
 
-  <!-- MAIN CARD - OPTIMIZED TO FIT WITHOUT SCROLLING ON DESKTOP -->
+  <!-- MAIN CARD -->
   <div id="mainCard" class="card-container bg-white rounded-2xl shadow-2xl overflow-hidden transition-all duration-300">
     <div class="p-6 sm:p-7">
       
@@ -470,21 +525,19 @@
             <span class="text-white font-extrabold text-sm">GN</span>
           </div>
          <a href="index.html" class="block no-underline">
-  <div>
-    <h1 class="text-lg font-extrabold tracking-tight text-gray-800 dark:text-white">
-      GlobalNexus
-    </h1>
-    <p class="text-[10px] font-medium text-gray-500 dark:text-gray-400 -mt-0.5">
-      connect · innovate · grow
-    </p>
-  </div>
-</a>
+          <div>
+            <h1 class="text-lg font-extrabold tracking-tight text-gray-800 dark:text-white">
+              GlobalNexus
+            </h1>
+            <p class="text-[10px] font-medium text-gray-500 dark:text-gray-400 -mt-0.5">
+              connect · innovate · grow
+            </p>
+          </div>
+        </a>
         </div>
         <div class="text-[#7C3AED] text-[10px] font-bold bg-purple-100 dark:bg-purple-900/50 px-2.5 py-1 rounded-full shadow-inner">join us</div>
       </div>
 
-      <!-- Welcome section -->
-    
       <!-- Sign-up Form -->
       <form id="signupForm" class="space-y-4">
         <!-- Full Name -->
@@ -504,20 +557,19 @@
         </div>
 
         <!-- Password -->
-       <div class="relative">
-  <input type="password" name="confirm_password" id="confirm_password" required 
-         placeholder="••••••••" 
-         class="w-full px-4 py-2.5 pr-10 rounded-xl border border-gray-300 bg-white focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30 text-sm font-medium">
-  
-  <i class="fa-solid fa-eye absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-[#7C3AED]" id="toggleConfirm"></i>
-</div>
+        <div class="relative">
+          <input type="password" name="password" id="password" required 
+                 placeholder="••••••••" 
+                 class="w-full px-4 py-2.5 pr-10 rounded-xl border border-gray-300 bg-white focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30 text-sm font-medium">
+          <i class="fa-solid fa-eye absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-[#7C3AED]" id="togglePassword"></i>
+        </div>
 
         <!-- Confirm Password -->
-        <div>
-          <label class="block text-xs font-bold text-gray-800 dark:text-gray-200 mb-1.5">Confirm password</label>
+        <div class="relative">
           <input type="password" name="confirm_password" id="confirm_password" required 
-                 placeholder="••••••••" 
-                 class="w-full px-4 py-2.5 rounded-xl border border-gray-300 bg-white focus:bg-white focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30 transition-all duration-200 text-sm font-medium">
+                 placeholder="Confirm ••••••••" 
+                 class="w-full px-4 py-2.5 pr-10 rounded-xl border border-gray-300 bg-white focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/30 text-sm font-medium">
+          <i class="fa-solid fa-eye absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-[#7C3AED]" id="toggleConfirm"></i>
         </div>
 
         <!-- Terms & Conditions Checkbox -->
@@ -531,7 +583,7 @@
           </label>
         </div>
 
-        <!-- Sign Up Button - HIGHLY VISIBLE -->
+        <!-- Sign Up Button -->
         <button type="submit" id="submitBtn"
                 class="w-full bg-[#7C3AED] text-white py-3 rounded-xl font-bold text-sm hover:bg-[#6d28d9] transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 group mt-3 cursor-pointer">
           <span class="btn-content">Create Account <span class="text-base submit-arrow transition-transform group-hover:translate-x-1">→</span></span>
@@ -545,18 +597,25 @@
         <div class="flex-1 h-px bg-gray-200 dark:bg-gray-700"></div>
       </div>
 
-      <!-- Social Sign-up Buttons -->
-      <div class="grid grid-cols-2 gap-3">
-     <button class="flex items-center justify-center gap-2 border py-2 rounded-xl text-xs shadow-sm">
-  <i class="fa-brands fa-google text-red-500"></i>
-  
-</button>
-      <button class="flex items-center justify-center gap-2 border py-2 rounded-xl text-xs shadow-sm">
-  <i class="fa-brands fa-linkedin text-blue-600"></i>
-  
-</button>
-        <button id="appleBtn" class="flex items-center justify-center gap-2 border border-gray-300 dark:border-gray-600 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/80 transition-all font-semibold text-xs shadow-sm cursor-pointer">
-<i class="fa-brands fa-apple text-gray-900 dark:text-black"></i></button>
+      <!-- Social Sign Up Buttons - Enhanced visibility in both modes -->
+      <div class="grid grid-cols-3 gap-3">
+        <!-- Google -->
+        <button id="googleBtn" class="social-auth-btn border py-2.5 rounded-xl shadow-sm transition-all duration-200">
+          <i class="fa-brands fa-google google-icon"></i>
+          <span class="btn-text">Google</span>
+        </button>
+
+        <!-- Instagram -->
+        <button id="instagramBtn" class="social-auth-btn border py-2.5 rounded-xl shadow-sm transition-all duration-200">
+          <i class="fa-brands fa-instagram instagram-icon"></i>
+          <span class="btn-text">Instagram</span>
+        </button>
+
+        <!-- Apple - Visible in both light and dark mode -->
+        <button id="appleBtn" class="social-auth-btn border py-2.5 rounded-xl shadow-sm transition-all duration-200">
+          <i class="fa-brands fa-apple apple-icon"></i>
+          <span class="btn-text">Apple</span>
+        </button>
       </div>
 
       <!-- Login Redirect Link -->
@@ -645,7 +704,6 @@
       const termsCheckbox = document.getElementById('termsCheckbox');
       
       const originalBtnHTML = submitBtn.innerHTML;
-      const originalBtnBg = submitBtn.style.background;
       
       function showBtnMessage(message, isError = true) {
         if (isError) {
@@ -714,47 +772,75 @@
       });
       
       // Social auth demo
-      document.getElementById('googleBtn')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('🔐 Google Sign-Up: Connect your Google account to GlobalNexus (demo).');
-      });
-      document.getElementById('linkedinBtn')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('💼 LinkedIn Sign-Up: Professional network integration for global opportunities.');
-      });
+      const googleBtn = document.getElementById('googleBtn');
+      const instagramBtn = document.getElementById('instagramBtn');
+      const appleBtn = document.getElementById('appleBtn');
+      
+      if (googleBtn) {
+        googleBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          alert('🔐 Google Sign-Up: Connect your Google account to GlobalNexus (demo).');
+        });
+      }
+      
+      if (instagramBtn) {
+        instagramBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          alert('📸 Instagram Sign-Up: Connect your Instagram account (demo).');
+        });
+      }
+      
+      if (appleBtn) {
+        appleBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          alert('🍎 Apple Sign-Up: Secure sign-in with Apple ID (demo).');
+        });
+      }
       
       // Links demo
-      document.getElementById('termsLink')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('GlobalNexus Terms of Service: Fair use, community guidelines, and data responsibility.');
-      });
-      document.getElementById('privacyLink')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('GlobalNexus Privacy Policy: Your data is encrypted and never shared without your consent.');
-      });
-    
+      const termsLink = document.getElementById('termsLink');
+      const privacyLink = document.getElementById('privacyLink');
+      
+      if (termsLink) {
+        termsLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          alert('GlobalNexus Terms of Service: Fair use, community guidelines, and data responsibility.');
+        });
+      }
+      
+      if (privacyLink) {
+        privacyLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          alert('GlobalNexus Privacy Policy: Your data is encrypted and never shared without your consent.');
+        });
+      }
     })();
-    // Password toggle
-const togglePassword = document.getElementById('togglePassword');
-const passwordInput = document.getElementById('password');
-
-togglePassword.addEventListener('click', () => {
-  const type = passwordInput.type === 'password' ? 'text' : 'password';
-  passwordInput.type = type;
-  togglePassword.classList.toggle('fa-eye');
-  togglePassword.classList.toggle('fa-eye-slash');
-});
-
-// Confirm password toggle
-const toggleConfirm = document.getElementById('toggleConfirm');
-const confirmInput = document.getElementById('confirm_password');
-
-toggleConfirm.addEventListener('click', () => {
-  const type = confirmInput.type === 'password' ? 'text' : 'password';
-  confirmInput.type = type;
-  toggleConfirm.classList.toggle('fa-eye');
-  toggleConfirm.classList.toggle('fa-eye-slash');
-});
+    
+    // Password toggle functionality
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+    
+    if (togglePassword && passwordInput) {
+      togglePassword.addEventListener('click', () => {
+        const type = passwordInput.type === 'password' ? 'text' : 'password';
+        passwordInput.type = type;
+        togglePassword.classList.toggle('fa-eye');
+        togglePassword.classList.toggle('fa-eye-slash');
+      });
+    }
+    
+    // Confirm password toggle
+    const toggleConfirm = document.getElementById('toggleConfirm');
+    const confirmInput = document.getElementById('confirm_password');
+    
+    if (toggleConfirm && confirmInput) {
+      toggleConfirm.addEventListener('click', () => {
+        const type = confirmInput.type === 'password' ? 'text' : 'password';
+        confirmInput.type = type;
+        toggleConfirm.classList.toggle('fa-eye');
+        toggleConfirm.classList.toggle('fa-eye-slash');
+      });
+    }
   </script>
 </body>
 </html>
