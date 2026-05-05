@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Glob</title>
+    <title>GlobalNexus | Vision & Mission</title>
     <!-- Tailwind CSS via CDN + config -->
     <script src="tailwind.js"></script>
     <script>
@@ -363,9 +363,15 @@
             background-image: radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 50%);
         }
 
-        /* Image styling */
+        /* Image styling - square aspect ratio */
         .vision-img,
-        .mission-img,
+        .mission-img {
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            width: 100%;
+            max-width: 380px;
+        }
+
         .team-avatar-img {
             object-fit: cover;
         }
@@ -434,13 +440,26 @@
             padding-left: 10px;
         }
         html[dir="rtl"] .nav-links {
-    gap: 1.5rem; /* same as space-x-6 */
-}
+            gap: 1.5rem;
+        }
 
-html[dir="rtl"] .nav-links > * {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-}
+        html[dir="rtl"] .nav-links > * {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+        
+        /* Square image container */
+        .square-img-container {
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+        .square-img-container img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
     </style>
 </head>
 
@@ -472,15 +491,13 @@ html[dir="rtl"] .nav-links > * {
                         <div
                             class="home-dropdown absolute left-0 mt-2 w-44 bg-white rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-purple-100 overflow-hidden dropdown-bg">
                             <a href="index.html"
-                                class="block px-4 py-2.5 text-sm hover:bg-purple-50 transition flex items-center gap-2 dropdown-item"><i
-                                    class="fas fa-home text-[#7C3AED] text-xs"></i> Home 1</a>
+                                class="block px-4 py-2.5 text-sm hover:bg-purple-50 transition flex items-center gap-2 dropdown-item"> Home 1</a>
                             <a href="home2.html"
-                                class="block px-4 py-2.5 text-sm hover:bg-purple-50 transition flex items-center gap-2 border-t border-purple-50 dropdown-item"><i
-                                    class="fas fa-chart-line text-[#7C3AED] text-xs"></i> Home 2</a>
+                                class="block px-4 py-2.5 text-sm hover:bg-purple-50 transition flex items-center gap-2 border-t border-purple-50 dropdown-item"> Home 2</a>
                         </div>
                     </div>
                     <a href="about.html"
-                        class="text-gray-700 font-medium text-sm lg:text-base hover:text-[#7C3AED] transition nav-text  active-link">About</a>
+                        class="text-gray-700 font-medium text-sm lg:text-base hover:text-[#7C3AED] transition nav-text active-link">About</a>
                     <a href="Service.html"
                         class="text-gray-700 font-medium text-sm lg:text-base hover:text-[#7C3AED] transition nav-text">Service</a>
                     <a href="Blog.html"
@@ -638,8 +655,7 @@ html[dir="rtl"] .nav-links > * {
                     <div class="flex flex-wrap gap-4 justify-center lg:justify-start pt-4">
                         <a href="#"
                             class="group bg-white text-purple-900 hover:bg-purple-50 px-8 py-3.5 rounded-full font-bold transition-all shadow-xl flex items-center gap-2">Launch
-                            Platform <i
-                                class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i></a>
+                            Platform <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i></a>
                         <a href="#"
                             class="border-2 border-white/30 hover:bg-white/10 backdrop-blur-sm px-8 py-3.5 rounded-full font-semibold transition-all flex items-center gap-2"><i
                                 class="fas fa-play-circle"></i> Watch Demo</a>
@@ -738,7 +754,7 @@ html[dir="rtl"] .nav-links > * {
         </div>
     </section>
 
-    <!-- VISION SECTION -->
+    <!-- VISION SECTION - SQUARE IMAGE -->
     <section class="py-16 md:py-20 bg-white dark:bg-black">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-12">
@@ -758,15 +774,17 @@ html[dir="rtl"] .nav-links > * {
                     </div>
                 </div>
                 <div class="lg:w-1/2 order-1 lg:order-2 flex justify-center">
-                    <img src="images/img (64).jpg"
-                        class="w-72 h-72 md:w-96 md:h-96 rounded-full object-cover shadow-2xl floating-image"
-                        alt="Vision illustration">
+                    <div class="square-img-container">
+                        <img src="images/img (64).jpg"
+                            class="rounded-2xl shadow-2xl floating-image vision-img"
+                            alt="Vision illustration">
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- MISSION SECTION -->
+    <!-- MISSION SECTION - SQUARE IMAGE -->
     <section
         class="py-16 md:py-20 bg-gradient-to-r from-purple-50/40 to-transparent dark:from-purple-950/20 dark:to-transparent">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -797,9 +815,13 @@ html[dir="rtl"] .nav-links > * {
                                 class="text-sm dark:text-white">Carbon-neutral hosting</span></div>
                     </div>
                 </div>
-                <div class="lg:w-1/2 flex justify-center"><img src="images/img (65).jpg"
-                        class="w-72 h-72 md:w-96 md:h-96 rounded-2xl object-cover shadow-xl transform rotate-3"
-                        alt="Mission illustration"></div>
+                <div class="lg:w-1/2 flex justify-center">
+                    <div class="square-img-container">
+                        <img src="images/img (65).jpg"
+                            class="rounded-2xl shadow-xl mission-img transform hover:scale-105 transition duration-500"
+                            alt="Mission illustration">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -852,7 +874,8 @@ html[dir="rtl"] .nav-links > * {
     <!-- TEAM SECTION -->
     <section class="py-16 md:py-20 bg-white dark:bg-black">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="mb-12"><span
+            <div class="mb-12">
+                <span
                     class="text-[#7C3AED] font-semibold text-sm uppercase tracking-wider bg-purple-100 dark:bg-purple-900/30 px-4 py-1 rounded-full inline-block">meet
                     the minds</span>
                 <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mt-4">The people behind
@@ -888,7 +911,7 @@ html[dir="rtl"] .nav-links > * {
                         <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Marcus Chen</h3>
                         <p class="text-[#7C3AED] text-sm font-semibold mt-1">CTO, AI & Infrastructure</p>
                         <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 flex-1">PhD in Distributed Systems, MIT.
-                            Leading AI-first cloud innovations Leading AI-first cloud innovations.</p>
+                            Leading AI-first cloud innovations.</p>
                         <div class="flex justify-center gap-4 mt-auto pt-4"><i
                                 class="fab fa-linkedin text-gray-400 hover:text-[#7C3AED] text-xl"></i><i
                                 class="fab fa-github text-gray-400 hover:text-[#7C3AED] text-xl"></i><i
