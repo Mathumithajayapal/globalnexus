@@ -284,7 +284,7 @@ html[dir="rtl"] .nav-links > * {
                 <div class="h-5 w-px bg-gray-300 divider-color"></div>
                 <button id="darkModeToggle" class="flex items-center gap-1.5 text-gray-700 font-medium text-sm hover:text-[#7C3AED] transition nav-text"><i id="darkIcon" class="fas fa-moon text-sm"></i> <span id="darkLabel">Dark</span></button>
                 <div class="h-5 w-px bg-gray-300 divider-color"></div>
-                <button id="rtlToggle" class="flex items-center gap-1.5 text-gray-700 font-medium text-sm hover:text-[#7C3AED] transition nav-text"><i id="rtlIcon" class="fas fa-globe text-sm"></i> <span id="rtlLabel">LTR</span></button>
+                <button id="rtlToggle" class="flex items-center gap-1.5 text-gray-700 font-medium text-sm hover:text-[#7C3AED] transition nav-text"> <span id="rtlLabel">LTR</span></button>
             </div>
             <div class="flex items-center gap-3 xl:hidden">
                 <button id="mobileMenuBtn" class="nav-text focus:outline-none p-2 rounded-full hover:bg-gray-100 transition">
@@ -309,8 +309,8 @@ html[dir="rtl"] .nav-links > * {
                     <span>Home</span><button id="drawerHomeBtn"><i id="drawerChevron" class="fas fa-chevron-down text-xs transition-transform"></i></button>
                 </div>
                 <div id="drawerSubmenu" class="hidden pl-4 mt-2 space-y-2">
-                    <a href="index.html" class="block py-1.5 text-sm hover:text-[#7C3AED] transition flex items-center gap-2 nav-text"><i class="fas fa-home text-[#7C3AED] text-xs"></i> Home 1</a>
-                    <a href="home2.html" class="block py-1.5 text-sm hover:text-[#7C3AED] transition flex items-center gap-2 nav-text"><i class="fas fa-chart-line text-[#7C3AED] text-xs"></i> Home 2</a>
+                    <a href="index.html" class="block py-1.5 text-sm hover:text-[#7C3AED] transition flex items-center gap-2 nav-text"> Home 1</a>
+                    <a href="home2.html" class="block py-1.5 text-sm hover:text-[#7C3AED] transition flex items-center gap-2 nav-text">Home 2</a>
                 </div>
             </div>
             <a href="about.html" class="block py-2 border-b border-purple-100 nav-text mobile-menu-item">About</a>
@@ -332,7 +332,7 @@ html[dir="rtl"] .nav-links > * {
                 <a href="login.html" class="flex items-center gap-2 nav-text text-gray-700"><i class="far fa-user-circle text-[#7C3AED]"></i> Login</a>
                 <div class="flex gap-2 pt-2">
                     <button id="drawerDarkToggle" class="flex-1 flex items-center justify-center gap-2 bg-gray-100 px-3 py-2 rounded-full text-sm font-medium transition mobile-toggle-btn"><i id="drawerDarkIcon" class="fas fa-moon text-xs"></i> <span id="drawerDarkLabel">Dark</span></button>
-                    <button id="drawerRtlToggle" class="flex-1 flex items-center justify-center gap-2 bg-gray-100 px-3 py-2 rounded-full text-sm font-medium transition mobile-toggle-btn"><i class="fas fa-globe text-xs"></i> <span id="drawerRtlLabel">LTR</span></button>
+                    <button id="drawerRtlToggle" class="flex-1 flex items-center justify-center gap-2 bg-gray-100 px-3 py-2 rounded-full text-sm font-medium transition mobile-toggle-btn"> <span id="drawerRtlLabel">LTR</span></button>
                 </div>
             </div>
         </div>
@@ -463,59 +463,39 @@ html[dir="rtl"] .nav-links > * {
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                 <!-- Card 1 -->
                 <div class="service-card bg-white border border-gray-100 rounded-3xl p-8 card-dark reveal">
-                    <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mb-5 badge-dark">
-                        <i class="fas fa-comments text-[#7C3AED] text-xl"></i>
-                    </div>
+                  <div class="w-14 h-14 rounded-2xl mb-5 overflow-hidden">
+    <img src="images\img (71).jpg" 
+         class="w-full h-full object-cover" 
+         alt="">
+</div>
                     <h3 class="text-xl font-bold text-gray-900 mb-3 text-dark-head">Business Language Training</h3>
                     <p class="text-gray-600 text-sm leading-relaxed mb-5 text-dark-body">Role-specific language courses for executives, sales teams, and client-facing professionals. Real workplace scenarios, industry vocabulary, and live .</p>
                     <a href="#" class="text-[#7C3AED] font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all">Learn more <i class="fas fa-arrow-right text-xs"></i></a>
                 </div>
                 <!-- Card 2 -->
                 <div class="service-card bg-white border border-gray-100 rounded-3xl p-8 card-dark reveal" style="transition-delay:0.1s">
-                    <div class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center mb-5">
-                        <i class="fas fa-earth-asia text-orange-500 text-xl"></i>
-                    </div>
+                  <div class="w-14 h-14 rounded-2xl mb-5 overflow-hidden">
+    <img src="images\img (65).jpg" 
+         class="w-full h-full object-cover" 
+         alt="">
+</div>
                     <h3 class="text-xl font-bold text-gray-900 mb-3 text-dark-head">Cross-Cultural Coaching</h3>
                     <p class="text-gray-600 text-sm leading-relaxed mb-5 text-dark-body">Understand cultural values, communication styles, and business etiquette from Japan to Brazil. Avoid costly misunderstandings before they happen.</p>
                     <a href="#" class="text-[#7C3AED] font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all">Learn more <i class="fas fa-arrow-right text-xs"></i></a>
                 </div>
                 <!-- Card 3 -->
                 <div class="service-card bg-white border border-gray-100 rounded-3xl p-8 card-dark reveal" style="transition-delay:0.2s">
-                    <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-5">
-                        <i class="fas fa-users text-blue-500 text-xl"></i>
-                    </div>
+                  <div class="w-14 h-14 rounded-2xl mb-5 overflow-hidden">
+    <img src="images\img (63).jpg" 
+         class="w-full h-full object-cover" 
+         alt="">
+</div>
                     <h3 class="text-xl font-bold text-gray-900 mb-3 text-dark-head">Team Immersion Workshops</h3>
                     <p class="text-gray-600 text-sm leading-relaxed mb-5 text-dark-body">Intensive half-day and full-day workshops for multinational teams. Practical exercises, cultural simulations, and debrief sessions.</p>
                     <a href="#" class="text-[#7C3AED] font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all">Learn more <i class="fas fa-arrow-right text-xs"></i></a>
                 </div>
                 <!-- Card 4 -->
-                <div class="service-card bg-white border border-gray-100 rounded-3xl p-8 card-dark reveal" style="transition-delay:0.1s">
-                    <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center mb-5">
-                        <i class="fas fa-chalkboard-teacher text-green-600 text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3 text-dark-head">1-on-1 Executive Coaching</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-5 text-dark-body">Personalized language and culture coaching for C-suite and senior managers preparing for international assignments or negotiations.</p>
-                    <a href="#" class="text-[#7C3AED] font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all">Learn more <i class="fas fa-arrow-right text-xs"></i></a>
-                </div>
-                <!-- Card 5 -->
-                <div class="service-card bg-white border border-gray-100 rounded-3xl p-8 card-dark reveal" style="transition-delay:0.2s">
-                    <div class="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center mb-5">
-                        <i class="fas fa-laptop text-pink-500 text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3 text-dark-head">Self-Paced eLearning</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-5 text-dark-body">Flexible online modules accessible 24/7 — from basic greetings to advanced negotiation language. Track progress with your team dashboard.</p>
-                    <a href="#" class="text-[#7C3AED] font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all">Learn more <i class="fas fa-arrow-right text-xs"></i></a>
-                </div>
-                <!-- Card 6 -->
-                <div class="service-card bg-white border border-gray-100 rounded-3xl p-8 card-dark reveal" style="transition-delay:0.3s">
-                    <div class="w-14 h-14 bg-yellow-100 rounded-2xl flex items-center justify-center mb-5">
-                        <i class="fas fa-file-alt text-yellow-600 text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3 text-dark-head">Language   Certification</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-5 text-dark-body">Benchmark employee language levels, track ROI, and issue globally recognized certificates aligned with CEFR standards.</p>
-                    <a href="#" class="text-[#7C3AED] font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all">Learn more <i class="fas fa-arrow-right text-xs"></i></a>
-                </div>
-            </div>
+      
         </div>
     </section>
 
