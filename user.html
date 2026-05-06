@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>GlobalNexus | Executive Dashboard</title>
     <!-- Tailwind CSS for catalog consistency -->
-    <script src="tailwind.js"></script>    <script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -59,7 +60,7 @@
             transition: background 0.2s ease, color 0.2s ease;
         }
 
-        /* RTL Support */
+        /* RTL Support - complete */
         body.rtl {
             direction: rtl;
         }
@@ -79,6 +80,12 @@
         }
         body.rtl .left-section {
             flex-direction: row-reverse;
+        }
+        body.rtl .progress-fill {
+            border-radius: 10px 0 0 10px;
+        }
+        body.rtl .toggle-btn.active .toggle-circle {
+            transform: translateX(-24px);
         }
 
         .app-wrapper {
@@ -140,7 +147,7 @@
             display: block;
         }
 
-        /* TOP BAR - FIXED: Menu + Heading + Icons ALL IN ONE ROW (NO TWO LINES) */
+        /* TOP BAR - FIXED: Menu + Heading + Icons ALL IN ONE ROW */
         .top-bar {
             display: flex;
             justify-content: space-between;
@@ -154,7 +161,6 @@
             flex-wrap: nowrap;
         }
 
-        /* LEFT SECTION: menu button + heading side by side */
         .left-section {
             display: flex;
             align-items: center;
@@ -193,11 +199,6 @@
             }
         }
 
-        /* Page title heading - consistent styling */
-        .page-title {
-            display: flex;
-            align-items: center;
-        }
         .page-title h1 {
             font-size: 1.5rem;
             font-weight: 700;
@@ -215,24 +216,38 @@
             color: transparent;
         }
 
-        /* Right action icons */
+        /* Action icons with text for RTL/LTR clarity */
         .action-icons {
             display: flex;
             gap: 20px;
             align-items: center;
             flex-shrink: 0;
         }
-        .action-icons i {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
+        .action-icon-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(124,58,237,0.08);
+            padding: 8px 14px;
+            border-radius: 40px;
             cursor: pointer;
-            transition: color 0.2s;
+            transition: all 0.2s;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.85rem;
         }
-        .action-icons i:hover {
+        .action-icon-btn i {
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        .action-icon-btn:hover {
+            background: rgba(124,58,237,0.2);
             color: #7C3AED;
         }
+        body.dark .action-icon-btn {
+            background: rgba(124,58,237,0.15);
+        }
 
-        /* Responsive: On very small screens reduce gap and font size */
         @media (max-width: 640px) {
             .top-bar {
                 padding: 10px 14px;
@@ -244,7 +259,6 @@
             .page-title h1 {
                 font-size: 1.1rem;
                 white-space: normal;
-                word-break: keep-all;
             }
             .hamburger-btn span {
                 display: none;
@@ -252,14 +266,11 @@
             .hamburger-btn {
                 padding: 8px 12px;
             }
-            .action-icons {
-                gap: 14px;
+            .action-icon-btn span {
+                display: none;
             }
-        }
-
-        @media (max-width: 480px) {
-            .page-title h1 {
-                font-size: 0.95rem;
+            .action-icon-btn {
+                padding: 8px 12px;
             }
         }
 
@@ -269,6 +280,30 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            margin-bottom: 30px;
+        }
+        .sidebar-logo-img {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #7C3AED, #A78BFA);
+            color: #fff;
+            font-weight: bold;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+        .sidebar-logo-text h2 {
+            font-size: 18px;
+            color: #FFFFFF;
+            margin: 0;
+            font-weight: 600;
+        }
+        .sidebar-logo-text p {
+            font-size: 12px;
+            color: #94A3B8;
+            margin: 2px 0 0;
         }
 
         .stats-grid {
@@ -284,9 +319,7 @@
             border: 1px solid var(--border-color);
             transition: all 0.2s;
         }
-        .stat-card:hover {
-            transform: translateY(-3px);
-        }
+        .stat-card:hover { transform: translateY(-3px); }
         .stat-icon {
             width: 48px;
             height: 48px;
@@ -316,32 +349,12 @@
             padding-bottom: 12px;
             border-bottom: 1px solid var(--border-light);
         }
-        .card-header h3 {
-            font-size: 18px;
-            font-weight: 700;
-        }
+        .card-header h3 { font-size: 18px; font-weight: 700; }
 
-        .progress-item {
-            margin-bottom: 20px;
-        }
-        .progress-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            margin-bottom: 8px;
-            color: var(--text-secondary);
-        }
-        .progress-bar {
-            height: 8px;
-            background: var(--border-light);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .progress-fill {
-            height: 100%;
-            background: #7C3AED;
-            border-radius: 10px;
-        }
+        .progress-item { margin-bottom: 20px; }
+        .progress-header { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px; color: var(--text-secondary); }
+        .progress-bar { height: 8px; background: var(--border-light); border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; background: #7C3AED; border-radius: 10px; }
 
         .activity-item {
             display: flex;
@@ -350,12 +363,7 @@
             padding: 12px 0;
             border-bottom: 1px solid var(--border-light);
         }
-        .activity-dot {
-            width: 10px;
-            height: 10px;
-            background: #10b981;
-            border-radius: 50%;
-        }
+        .activity-dot { width: 10px; height: 10px; background: #10b981; border-radius: 50%; }
         .activity-text { flex: 1; font-size: 14px; color: var(--text-secondary); }
         .activity-time { font-size: 12px; color: var(--text-muted); }
 
@@ -366,9 +374,7 @@
             border: 1px solid var(--border-color);
             transition: transform 0.25s ease;
         }
-        .course-card:hover {
-            transform: translateY(-5px);
-        }
+        .course-card:hover { transform: translateY(-5px); }
         .course-img {
             width: 100%;
             height: 160px;
@@ -380,15 +386,9 @@
             font-size: 48px;
         }
         
-        .page-section {
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
+        .page-section { display: none; animation: fadeIn 0.3s ease; }
         .page-section.active-section { display: block; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
         
         .toast-msg {
             position: fixed;
@@ -501,70 +501,9 @@
             min-height: 100vh;
         }
         @media (max-width: 900px) {
-            .main-content {
-                padding: 16px;
-            }
+            .main-content { padding: 16px; }
         }
-        /* Sidebar Container */
-.sidebar {
-    width: 260px;
-    height: 100vh;
-    background: #0F172A; /* dark navy */
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Logo Area */
-.logo-area-sidebar {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    margin-bottom: 30px;
-}
-
-/* Logo Box (GN) */
-.sidebar-logo-img {
-    width: 45px;
-    height: 45px;
-    background: linear-gradient(135deg, #7C3AED, #A78BFA);
-    color: #fff;
-    font-weight: bold;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    letter-spacing: 1px;
-}
-
-/* Logo Text */
-.sidebar-logo-text h2 {
-    font-size: 18px;
-    color: #FFFFFF;
-    margin: 0;
-    font-weight: 600;
-}
-
-/* Tagline */
-.sidebar-logo-text p {
-    font-size: 12px;
-    color: #94A3B8;
-    margin: 2px 0 0;
-    letter-spacing: 0.5px;
-}
-
-/* Hover Effect */
-.logo-area-sidebar:hover .sidebar-logo-img {
-    transform: scale(1.05);
-    transition: 0.3s ease;
-}
-
-.logo-area-sidebar:hover h2 {
-    color: #A78BFA;
-    transition: 0.3s ease;
-}
+        .sidebar-footer { margin-top: auto; }
     </style>
 </head>
 <body>
@@ -606,7 +545,7 @@
     </aside>
 
     <main class="main-content">
-        <!-- FIXED TOP BAR: Menu + Heading + Icons all in single row, no two lines ever -->
+        <!-- TOP BAR: clear icons with text labels for RTL/LTR -->
         <div class="top-bar">
             <div class="left-section">
                 <div class="hamburger-btn" id="hamburgerBtn">
@@ -618,8 +557,13 @@
                 </div>
             </div>
             <div class="action-icons">
-                <i class="fas fa-moon" id="topDarkIcon" title="Dark Mode"></i>
-                <i class="fas fa-globe" id="topRtlIcon" title="RTL Toggle"></i>
+                <div class="action-icon-btn" id="topDarkIcon">
+                    <i class="fas fa-moon"></i>
+                    <span id="darkModeLabel">Dark</span>
+                </div>
+                <div class="action-icon-btn" id="topRtlIcon">
+                    <span id="rtlModeLabel">LTR</span>
+                </div>
             </div>
         </div>
 
@@ -655,7 +599,7 @@
             </div>
         </div>
 
-        <!-- OTHER SECTIONS (all with same top bar) -->
+        <!-- OTHER SECTIONS -->
         <div id="catalog-section" class="page-section">
             <div class="dashboard-card"><div class="card-header"><h3><i class="fas fa-book-open"></i> Course Catalog</h3></div><div class="grid md:grid-cols-3 gap-5"><div class="course-card"><div class="course-img"><i class="fas fa-language"></i></div><div class="p-4"><h3>Business English</h3><p class="text-sm text-muted">6 weeks</p></div></div><div class="course-card"><div class="course-img"><i class="fas fa-globe-americas"></i></div><div class="p-4"><h3>Cross-Cultural Intelligence</h3><p class="text-sm text-muted">4 weeks</p></div></div><div class="course-card"><div class="course-img"><i class="fas fa-comments"></i></div><div class="p-4"><h3>German for Business</h3><p class="text-sm text-muted">8 weeks</p></div></div></div></div>
         </div>
@@ -663,7 +607,7 @@
             <div class="dashboard-card"><div class="card-header"><h3><i class="fas fa-user-circle"></i> Personal Information</h3></div><div class="grid md:grid-cols-2 gap-5"><div><label class="block mb-1">Full Name</label><input type="text" value="James Donovan" class="w-full p-3 rounded-xl border border-border-light bg-[var(--bg-card)]" style="background:var(--bg-card); color:var(--text-primary); border-color:var(--border-light)"></div><div><label class="block mb-1">Email</label><input type="email" value="james.donovan@globalnexus.com" class="w-full p-3 rounded-xl border border-border-light bg-[var(--bg-card)]" style="background:var(--bg-card); color:var(--text-primary); border-color:var(--border-light)"></div></div><button class="save-btn mt-5" id="saveProfileBtn">Update Profile</button></div>
         </div>
         <div id="security-section" class="page-section">
-            <div class="dashboard-card"><div class="card-header"><h3><i class="fas fa-shield-alt"></i> Security Settings</h3></div><div class="security-item flex justify-between py-4 border-b" style="border-bottom-color:var(--border-light)"><div><h4>Password</h4><p class="text-sm text-muted">Last changed 45 days ago</p></div><div class="text-purple-600 font-semibold cursor-pointer" id="changePasswordBtn">Change →</div></div><div class="security-item flex justify-between py-4 border-b" style="border-bottom-color:var(--border-light)"><div><h4>Two-Factor Authentication</h4><p class="text-sm text-muted">Add extra security</p></div><div class="text-purple-600 font-semibold cursor-pointer" id="enable2faBtn">Enable 2FA →</div></div></div>
+            <div class="dashboard-card"><div class="card-header"><h3><i class="fas fa-shield-alt"></i> Security Settings</h3></div><div class="flex justify-between py-4 border-b" style="border-bottom-color:var(--border-light)"><div><h4>Password</h4><p class="text-sm text-muted">Last changed 45 days ago</p></div><div class="text-purple-600 font-semibold cursor-pointer" id="changePasswordBtn">Change →</div></div><div class="flex justify-between py-4 border-b" style="border-bottom-color:var(--border-light)"><div><h4>Two-Factor Authentication</h4><p class="text-sm text-muted">Add extra security</p></div><div class="text-purple-600 font-semibold cursor-pointer" id="enable2faBtn">Enable 2FA →</div></div></div>
         </div>
         <div id="preferences-section" class="page-section">
             <div class="dashboard-card"><div class="card-header"><h3><i class="fas fa-sliders-h"></i> Appearance & Language</h3></div><div class="toggle-switch"><div><h4>Dark Mode</h4></div><div id="darkModeTogglePref" class="toggle-btn"><div class="toggle-circle"></div></div></div><div class="toggle-switch"><div><h4>RTL Layout</h4></div><div id="rtlTogglePref" class="toggle-btn"><div class="toggle-circle"></div></div></div><button class="save-btn mt-5" id="savePreferencesBtn">Save Preferences</button></div>
@@ -683,26 +627,40 @@
     let isDark = localStorage.getItem('globalnexus_dark') === 'enabled';
     let isRTL = localStorage.getItem('globalnexus_rtl') === 'enabled';
     
+    // Update UI elements for dark mode
     function applyDarkMode(enabled) {
         if (enabled) document.body.classList.add('dark'); else document.body.classList.remove('dark');
         const togglePref = document.getElementById('darkModeTogglePref');
         if(togglePref) {
             if(enabled) togglePref.classList.add('active'); else togglePref.classList.remove('active');
         }
-        const topIcon = document.getElementById('topDarkIcon');
-        if(topIcon) topIcon.className = enabled ? 'fas fa-sun' : 'fas fa-moon';
+        const darkLabel = document.getElementById('darkModeLabel');
+        if(darkLabel) darkLabel.innerText = enabled ? 'Light' : 'Dark';
+        const topIconDiv = document.getElementById('topDarkIcon');
+        if(topIconDiv) {
+            const icon = topIconDiv.querySelector('i');
+            if(icon) icon.className = enabled ? 'fas fa-sun' : 'fas fa-moon';
+        }
         localStorage.setItem('globalnexus_dark', enabled ? 'enabled' : 'disabled');
     }
     
+    // Update UI for RTL with clear text label
     function applyRTL(enabled) {
-        if (enabled) document.body.classList.add('rtl'); else document.body.classList.remove('rtl');
+        if (enabled) {
+            document.body.classList.add('rtl');
+            document.documentElement.setAttribute('dir', 'rtl');
+        } else {
+            document.body.classList.remove('rtl');
+            document.documentElement.setAttribute('dir', 'ltr');
+        }
         const rtlPref = document.getElementById('rtlTogglePref');
         if(rtlPref) {
             if(enabled) rtlPref.classList.add('active'); else rtlPref.classList.remove('active');
         }
-        document.documentElement.setAttribute('dir', enabled ? 'rtl' : 'ltr');
+        const rtlLabelSpan = document.getElementById('rtlModeLabel');
+        if(rtlLabelSpan) rtlLabelSpan.innerText = enabled ? 'RTL' : 'LTR';
         localStorage.setItem('globalnexus_rtl', enabled ? 'enabled' : 'disabled');
-        // Force reflow for any rtl adjustments
+        // Force reflow
         document.body.style.display = 'none';
         document.body.offsetHeight;
         document.body.style.display = '';
@@ -711,17 +669,20 @@
     applyDarkMode(isDark);
     applyRTL(isRTL);
     
-    // Toggle events
+    // Toggle event handlers
     const darkTogglePref = document.getElementById('darkModeTogglePref');
     if(darkTogglePref) darkTogglePref.addEventListener('click', () => { isDark = !isDark; applyDarkMode(isDark); showToast(isDark ? "Dark mode enabled" : "Light mode enabled"); });
+    
     const rtlTogglePref = document.getElementById('rtlTogglePref');
     if(rtlTogglePref) rtlTogglePref.addEventListener('click', () => { isRTL = !isRTL; applyRTL(isRTL); showToast(isRTL ? "RTL layout enabled" : "LTR layout enabled"); });
+    
     const topDark = document.getElementById('topDarkIcon');
     if(topDark) topDark.addEventListener('click', () => { isDark = !isDark; applyDarkMode(isDark); showToast(isDark ? "Dark mode on" : "Light mode on"); });
-    const topRtl = document.getElementById('topRtlIcon');
-    if(topRtl) topRtl.addEventListener('click', () => { isRTL = !isRTL; applyRTL(isRTL); showToast(isRTL ? "RTL enabled" : "LTR enabled"); });
     
-    // Navigation and heading updates - all in one row
+    const topRtl = document.getElementById('topRtlIcon');
+    if(topRtl) topRtl.addEventListener('click', () => { isRTL = !isRTL; applyRTL(isRTL); showToast(isRTL ? "RTL (Right-to-Left) active" : "LTR (Left-to-Right) active"); });
+    
+    // Navigation and heading updates
     const headingMap = {
         dashboard: { icon: 'chart-line', title: 'Dashboard' },
         catalog: { icon: 'book-open', title: 'Course Catalog' },
@@ -733,23 +694,18 @@
     };
     
     function showSection(sectionId, pageTitle, icon) {
-        // Hide all sections
         document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active-section'));
         const targetSection = document.getElementById(`${sectionId}-section`);
         if(targetSection) targetSection.classList.add('active-section');
         
-        // Update dynamic heading
         const headingEl = document.getElementById('dynamicHeading');
         if(headingEl) {
             headingEl.innerHTML = `<i class="fas fa-${icon}" style="color:#7C3AED;"></i> ${pageTitle}`;
         }
-        
-        // Update active nav item
         document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
         const activeNav = document.querySelector(`.nav-item[data-page="${sectionId}"]`);
         if(activeNav) activeNav.classList.add('active');
         
-        // Close sidebar on mobile after selection
         if(window.innerWidth <= 900) closeSidebar();
     }
     
@@ -766,9 +722,7 @@
         btn.addEventListener('click', () => {
             const page = btn.getAttribute('data-page');
             const info = headingMap[page];
-            if(info) {
-                showSection(page, info.title, info.icon);
-            }
+            if(info) showSection(page, info.title, info.icon);
         });
     });
     
@@ -789,7 +743,7 @@
     
     window.addEventListener('resize', function() { if(window.innerWidth > 900) closeSidebar(); });
     
-    // Initialize heading on load (Dashboard active)
+    // Initialize active page
     const initPage = 'dashboard';
     const initInfo = headingMap[initPage];
     if(initInfo) showSection(initPage, initInfo.title, initInfo.icon);
