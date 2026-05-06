@@ -497,7 +497,77 @@
   .social-auth-btn i {
     font-size: 1.2rem;
   }
-  
+  /* DARK MODE — TRUE BLACK THEME */
+body.dark-mode {
+  background: #000000; /* pure black */
+}
+
+/* Main card */
+body.dark-mode .card-container {
+  background-color: #0f0f0f !important; /* soft black */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+  border: 1px solid #1f1f1f;
+}
+
+/* Input fields (dark grey contrast) */
+body.dark-mode input {
+  background-color: #1a1a1a !important;
+  border: 1px solid #2a2a2a !important;
+  color: #f5f5f5 !important;
+}
+
+/* Placeholder */
+body.dark-mode input::placeholder {
+  color: #888 !important;
+}
+
+/* Input focus */
+body.dark-mode input:focus {
+  border-color: #7c3aed !important;
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.3);
+}
+
+/* Labels */
+body.dark-mode label {
+  color: #e5e5e5 !important;
+}
+
+/* Text colors */
+body.dark-mode .text-gray-600,
+body.dark-mode .text-gray-700,
+body.dark-mode .text-gray-800 {
+  color: #d4d4d4 !important;
+}
+
+/* Divider lines */
+body.dark-mode .bg-gray-200,
+body.dark-mode .border-gray-200 {
+  background-color: #2a2a2a !important;
+  border-color: #2a2a2a !important;
+}
+
+/* Social buttons */
+body.dark-mode .social-auth-btn {
+  background-color: #1a1a1a;
+  border-color: #2a2a2a;
+}
+
+body.dark-mode .social-auth-btn:hover {
+  background-color: #242424;
+  border-color: #7c3aed;
+}
+
+/* Toggle container */
+body.dark-mode .fixed-toggles {
+  background: rgba(20, 20, 20, 0.95);
+  border: 1px solid #2a2a2a;
+}
+
+/* Toggle buttons */
+body.dark-mode .toggle-btn {
+  background: #1a1a1a;
+  color: #fff;
+}
 </style>
 </head>
 <body>
